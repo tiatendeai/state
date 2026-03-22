@@ -1,0 +1,33 @@
+version: 1
+
+purpose: >
+  Camada canônica de governança, contexto, memória e conhecimento
+  do ecossistema TiatendeAI.
+
+principles:
+  - não duplicar conhecimento
+  - priorizar contexto real sobre suposições
+  - promover aprendizado com curadoria
+  - manter rastreabilidade
+  - operar com consistência entre sistemas
+
+hierarchy:
+  - code_and_contracts
+  - local_context
+  - decisions
+  - repo_contexts
+  - patterns_playbooks
+  - memory_knowledge
+  - external_sources
+
+modules:
+  - constitution
+  - ecosystem
+  - contexts
+  - decisions
+  - patterns
+  - playbooks
+  - memory
+  - knowledge
+  - registry
+  - templates
