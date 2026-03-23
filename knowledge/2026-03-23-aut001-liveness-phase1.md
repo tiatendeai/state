@@ -75,6 +75,20 @@ Ou seja:
 2. transição `stale -> closed` com gate explícito
 3. testes/validação adicional do fluxo
 4. harmonização semântica final com o espelho do `ruptur`
+5. registro documentado do runner e dos relatórios no State
+
+---
+
+## 6. Runner periódico e relatórios
+
+- workflow `session-liveness-daily.yml` no `omega` roda o guard de liveness a cada quatro horas
+- os relatórios `reports/liveness-report-*.json` ficam disponíveis no runner (não versionados)
+- isso torna o AUT-001 auditável e observável, facilitando a revisão manual do gate
+
+Referência:
+
+- `omega/.github/workflows/session-liveness-daily.yml`
+- `omega/scripts/session_liveness_guard.py`
 5. merge da PR do `omega` em `main`
 
 ---
