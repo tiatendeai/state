@@ -4,18 +4,55 @@ audited_at: 2026-03-22
 repositories:
   - id: state
     classification: canonical
-    role: governanca_contexto_memoria
+    role: governanca_identidade_contexto_memoria_backlog
     maturity: seed_minimo
     source_of_truth_scope:
       - governanca
+      - identidade
       - contexto_curado
       - memoria_curada
+      - backlog_de_consolidacao
       - capital_intelectual
     local_path: /Users/diego/Documents/GitHub/state
     remote: https://github.com/tiatendeai/state.git
     notes:
       - Repositorio canônico em intenção, mas ainda com baixa cobertura factual.
-      - Exige expansão de contexts, decisions, patterns, registry e templates.
+      - Fundação mínima de ativação fechada em 2026-03-22 para hierarquia da verdade, guardrails, modelo de estado, política de aborto e registro de manifestações.
+      - Exige expansão de decisions, patterns, contexts satélite, registries restantes e templates.
+
+  - id: alpha
+    classification: genesis_foundation
+    role: genesis_identidade_raiz_bootstrap
+    maturity: bootstrap_foundation
+    source_of_truth_scope:
+      - genesis
+      - identidade_raiz
+      - prova_de_origem
+      - preexistencia
+      - contrato_de_fronteira
+    local_path: /Users/diego/Documents/GitHub/alpha
+    remote: https://github.com/tiatendeai/alpha.git
+    notes:
+      - Repositorio de gênese e identidade raiz do Jarvis.
+      - Não substitui a governança do STATE nem o runtime do RUPTUR.
+      - Formalizado como camada própria em 2026-03-22 a partir do corpus consolidado e da fundação documental do Alpha.
+
+  - id: omega
+    classification: session_lifecycle
+    role: lifecycle_de_sessao_replay_recovery
+    maturity: seed_with_structural_debt
+    source_of_truth_scope:
+      - lifecycle_de_sessao
+      - replay
+      - recovery
+      - handoff_entre_sessoes
+      - lineage_de_execucao
+    local_path: /Users/diego/Documents/GitHub/omega
+    remote: https://github.com/tiatendeai/omega.git
+    notes:
+      - Repositorio destinado ao ciclo de sessão, replay e recovery do Jarvis.
+      - Ainda possui dívida estrutural entre README, CI e filesystem material.
+      - Deve operar sobre os invariantes de identidade definidos pelo Alpha e sob governança do STATE.
 
   - id: codex/ruptur
     classification: execution_trunk
@@ -72,7 +109,7 @@ repositories:
     remote: unknown
     notes:
       - Existe tambem como submodulo em codex/ruptur.
-      - Requer politica explicita de ownership, extração e risco de dados sensiveis.
+      - Requer politica explicita de responsabilidade, extração e risco de dados sensiveis.
 
   - id: vps-oracle
     classification: infra_satellite
