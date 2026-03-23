@@ -44,6 +44,24 @@ Esse perfil default só pode incluir capacidades que:
 
 ---
 
+## Perfis nomeados de ativação
+
+### Perfil default inicial
+
+Baseline mínimo documentado para novas sessões oficiais.
+
+### Modo Full
+
+Quando explicitamente ativado, o **Modo Full** sobe todas as capacidades baseline ao mesmo tempo e exige:
+
+- uso explícito de cada capacidade na rodada
+- registro auditável da ativação
+- trace da sessão em `knowledge/traces/trace-<session_id>.md`
+
+Referência operacional: `playbooks/jarvis.full-mode.md`.
+
+---
+
 ## Revisão obrigatória de performance
 
 O perfil de performance da sessão deve ser revisado:
@@ -88,6 +106,16 @@ Toda sessão deve registrar, no mínimo:
 - momento da revisão
 - motivo de adição, remoção ou rebaixamento
 - referência ao backlog/plano mestre quando aplicável
+
+---
+
+## Integração com intake e trace grading
+
+Quando uma revisão de performance consolidar diretriz durável, o fechamento deve apontar para:
+
+- `playbooks/jarvis.intake-gate.md`
+- `knowledge/trace-grading.md`
+- `templates/jarvis.trace-card.md`
 
 ---
 

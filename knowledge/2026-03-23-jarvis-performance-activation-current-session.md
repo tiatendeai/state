@@ -32,6 +32,15 @@ Elevar, já nesta sessão, as capacidades do Jarvis que:
 - `session_telemetry_basic`
 - `github_projects_backlog_linkage`
 
+### 2.2. Overlay adicional da sessão
+
+Em `2026-03-23T08:26:39-03:00`, esta sessão também recebeu pedido explícito para operar em **Modo Full**.
+
+Referência de registro:
+
+- `knowledge/2026-03-23-jarvis-full-mode-activation-current-session.md`
+- `knowledge/traces/trace-OMEGA-20260323-001002-8fcbcf98-jarvis-001.md`
+
 ---
 
 ## 2.1. Regra para sessões futuras
