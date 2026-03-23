@@ -59,6 +59,12 @@ O debate pode ser feito por subagentes ou por framework estruturado na própria 
 
 Consultar o corpus canônico, o backlog e o contexto operacional pertinente antes de concluir a execução.
 
+Quando a rodada tocar promoção ao `state`, Context7/RAG ou GitHub Projects, consultar também:
+
+- `knowledge/intake/README.md`
+- `knowledge/context7-governance.md`
+- `knowledge/projects-linkage.md`
+
 ### 4. Capitalização
 
 Toda diretriz durável, decisão operacional, ativação de modo ou débito real precisa deixar rastro no STATE.

@@ -1,3 +1,9 @@
+<!--
+Espelho local gerado por scripts/jarvis/sync_state_duality.py.
+Fonte canônica: ../../state/playbooks/multi-agent-debate.md
+Não edite manualmente aqui sem promover no STATE.
+-->
+
 # Playbook: Multiagentes em Debate (Estilo Orchestrator/Maestro)
 
 **Classificação:** Playbook de Arquitetura Cognitiva

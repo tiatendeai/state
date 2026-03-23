@@ -1,3 +1,9 @@
+<!--
+Espelho local gerado por scripts/jarvis/sync_state_duality.py.
+Fonte canônica: ../../state/playbooks/jarvis.performance-default.md
+Não edite manualmente aqui sem promover no STATE.
+-->
+
 # Playbook — performance default do Jarvis
 
 **Status:** ativo  
@@ -41,24 +47,6 @@ Esse perfil default só pode incluir capacidades que:
 - `documentation_and_comment_coverage_required`
 - `session_telemetry_basic`
 - `github_projects_backlog_linkage`
-
----
-
-## Perfis nomeados de ativação
-
-### Perfil default inicial
-
-Baseline mínimo documentado para novas sessões oficiais.
-
-### Modo Full
-
-Quando explicitamente ativado, o **Modo Full** sobe todas as capacidades baseline ao mesmo tempo e exige:
-
-- uso explícito de cada capacidade na rodada
-- registro auditável da ativação
-- trace da sessão em `knowledge/traces/trace-<session_id>.md`
-
-Referência operacional: `playbooks/jarvis.full-mode.md`.
 
 ---
 
