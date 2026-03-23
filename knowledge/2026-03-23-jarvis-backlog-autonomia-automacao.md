@@ -190,3 +190,21 @@ Critério aplicado na publicação:
 Fonte de origem destes itens:
 
 - `knowledge/2026-03-23-fotografia-jarvis-manifestacao-local.md`
+
+---
+
+## 9. Andamento atual
+
+### JARVIS-AUT-001 — em progresso com fase 1 entregue
+
+Referência detalhada:
+
+- `knowledge/2026-03-23-aut001-liveness-phase1.md`
+
+Situação atual:
+
+- policy e script inicial de liveness entregues no `omega`
+- sessão ativa protegida contra fechamento indevido
+- sincronização mínima de liveness entregue no `ruptur`
+- card movido para `In Progress`
+- merge final do `omega` ainda depende da PR aberta
