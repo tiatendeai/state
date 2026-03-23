@@ -1,24 +1,67 @@
 version: 1
 
 purpose: >
-  Camada canônica de governança, contexto, memória e conhecimento
-  do ecossistema TiatendeAI.
+  Camada canônica de governança, guardrails, contexto, memória curada,
+  backlog de consolidação, reconciliação institucional e conhecimento
+  do ecossistema TiatendeAI. A gênese e a identidade raiz do Jarvis
+  pertencem ao Alpha.
 
 principles:
+  - resolver o escopo da verdade antes de agir
   - não duplicar conhecimento
   - priorizar contexto real sobre suposições
   - promover aprendizado com curadoria
   - manter rastreabilidade
   - operar com consistência entre sistemas
+  - registrar conflito como decisão ou débito
+  - nao_permitir_placeholder_canonico_zero_byte
+  - não deixar diretriz consolidada apenas na conversa
 
-hierarchy:
-  - code_and_contracts
-  - local_context
-  - decisions
-  - repo_contexts
-  - patterns_playbooks
-  - memory_knowledge
-  - external_sources
+artifact_policy:
+  - artefato_canonico_reservado_exige_conteudo_minimo
+  - placeholder_controlado_nao_e_politica_vigente
+
+canonical_scopes:
+  alpha:
+    - genesis
+    - identidade_raiz
+    - prova_de_origem
+    - preexistencia
+  state:
+    - governanca
+    - guardrails
+    - contexto_curado
+    - memoria_curada
+    - backlog_de_consolidacao
+    - capital_intelectual
+    - reconciliacao_institucional
+    - manifestacoes_canonicas
+  omega:
+    - lifecycle_de_sessao
+    - replay
+    - recovery
+    - persistencia_de_session_id
+  repositories_responsaveis:
+    - codigo
+    - contratos_ativos
+    - runtime
+    - deploy
+    - runbooks_operacionais
+
+hierarchy_of_truth:
+  - alpha_para_genese_e_identidade_raiz
+  - state_para_governanca_guardrails_memoria_e_reconciliacao
+  - omega_para_lifecycle_de_sessao
+  - repo_dono_para_codigo_contratos_runtime
+  - decisions_e_registries_para_reconciliacao
+  - contexts_e_playbooks_para_execucao
+  - memory_e_knowledge_como_suporte
+  - fontes_externas_com_validacao_explicita
+
+conflict_policy:
+  - registrar_como_decisao_ou_debito
+  - nao_improvisar_reconciliacao_cross_repo
+  - nao_deixar_diretriz_somente_na_conversa
 
 modules:
   - constitution
