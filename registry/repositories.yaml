@@ -1,3 +1,7 @@
+# Espelho local gerado por scripts/jarvis/sync_state_duality.py.
+# Fonte canônica: ../../state/registry/repositories.yaml
+# Não edite manualmente aqui sem promover no STATE.
+
 version: 1
 audited_at: 2026-03-22
 
