@@ -171,3 +171,22 @@ Critério aplicado na publicação:
 - `Status = Todo` para todos os itens recém-publicados
 - classificação econômica aplicada no `Ruptur Delivery OS` conforme o tipo de débito/oportunidade
 - backlog institucional continua canônico no `state`; os boards são espelhos operacionais de execução e priorização
+
+---
+
+## 8. Débitos de reconciliação derivados da fotografia local de 2026-03-23
+
+| ID | Prioridade | Tema | Repositório líder | Resultado esperado |
+|---|---|---|---|---|
+| JARVIS-REC-011 | P1 | Reconciliar `constitution/ruptur.sources-and-queries.md` com o modelo Alpha / State / Omega / Ruptur | `state` | remover regra de consulta desatualizada |
+| JARVIS-REC-012 | P1 | Atualizar `contexts/ruptur.md` do modelo bifásico para o quadrifásico | `state` | contexto do Ruptur deixa de carregar ontologia antiga |
+| JARVIS-REC-013 | P1 | Ajustar `registry/repositories.yaml` para não deixar margem de leitura do `state` como dono da identidade raiz | `state` | responsabilidade de identidade volta a ficar inequívoca no `alpha` |
+| JARVIS-REC-014 | P1 | Atualizar `knowledge/ruptur.activation-debts.md` removendo débitos já resolvidos e destacando apenas os ativos | `state` | dívida de ativação deixa de mentir por desatualização |
+| JARVIS-REC-015 | P1 | Fechar assimetria semântica entre o artefato de sessão do `omega` e o espelho do `ruptur` | `omega` + `codex/ruptur` | deliverables e status de espelhamento passam a falar a mesma língua |
+| JARVIS-REC-016 | P1 | Explicitar responsável por manifestação em `registry/manifestations.yaml` | `state` | cada manifestação passa a carregar ownership institucional explícito |
+| JARVIS-REC-017 | P1 | Tratar placeholders canônicos zero-byte com conteúdo mínimo ou classificação formal de placeholder | `state` | corpus canônico deixa de ter zonas silenciosas sem semântica |
+| JARVIS-REC-018 | P2 | Criar matriz canônica única `atributo -> valor -> camada dona -> evidência -> grau de consolidação` | `state` | auditoria futura do Jarvis fica mais rápida e menos ambígua |
+
+Fonte de origem destes itens:
+
+- `knowledge/2026-03-23-fotografia-jarvis-manifestacao-local.md`
