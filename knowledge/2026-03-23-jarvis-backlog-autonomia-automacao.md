@@ -208,3 +208,16 @@ Situação atual:
 - sincronização mínima de liveness entregue no `ruptur`
 - card movido para `In Progress`
 - merge final do `omega` ainda depende da PR aberta
+
+### JARVIS-AUT-001 — fase 2 em curso
+
+Referência:
+
+- `knowledge/2026-03-23-aut001-gate.md`
+
+Itens previstos:
+
+- gate controlado `stale -> closed` com revisão manual dos relatórios
+- runner periódico já gerando relatórios `report_only`
+- testes/validação com sessão simulada antes de aplicar
+- harmonização final semântica com o espelho do `ruptur`
