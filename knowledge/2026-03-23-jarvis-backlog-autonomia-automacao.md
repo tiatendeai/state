@@ -221,3 +221,46 @@ Itens previstos:
 - runner periódico já gerando relatórios `report_only`
 - testes/validação com sessão simulada antes de aplicar
 - harmonização final semântica com o espelho do `ruptur`
+
+### JARVIS-AUT-005 — fundação documental entregue no STATE
+
+Referências:
+
+- `playbooks/jarvis.intake-gate.md`
+- `knowledge/trace-grading.md`
+- `templates/jarvis.trace-card.md`
+- `knowledge/traces/README.md`
+
+Situação atual:
+
+- gate documental de promoção materializado
+- scorecard e template de trace disponíveis
+- automação de intake, inbox e reconciliação assistida continuam pendentes
+- o Modo Full reforçou este item no lado STATE, mas não fecha ainda a automação end-to-end
+
+### JARVIS-AUT-004 / 005 / 010 — avanço adicional no lado STATE com Modo Full
+
+Referências:
+
+- `playbooks/jarvis.full-mode.md`
+- `knowledge/2026-03-23-jarvis-full-mode-activation-current-session.md`
+- `knowledge/traces/trace-OMEGA-20260323-001002-8fcbcf98-jarvis-001-full-mode-activation.md`
+
+Situação atual:
+
+- `JARVIS-AUT-004`: telemetria mínima reforçada no lado STATE
+- `JARVIS-AUT-005`: capitalização auditável reforçada com trace nomeado por slug
+- `JARVIS-AUT-010`: cobertura documental ampliada no lado STATE
+
+Leitura correta:
+
+- avanço real no **lado STATE**
+- ainda **não** representa fechamento end-to-end em `omega` + `codex/ruptur`
+
+### JARVIS-REC-017 — fechado nesta rodada documental
+
+Situação atual:
+
+- placeholders canônicos zero-byte foram tratados com conteúdo mínimo ou placeholder formal
+- arquivos deslocados para `state/` interno foram reconciliados nos caminhos canônicos do repositório
+- o corpus deixa de ter zonas silenciosas sem semântica

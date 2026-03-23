@@ -5,20 +5,29 @@
 
 ---
 
-## 🧭 Diretrizes de Uso (State-First)
+## 🧭 Diretrizes de Uso (Scope-First / State-First)
 
 Este documento dita a compreensão que qualquer agente deve ter ao interagir com o repositório `ruptur`.
 
-1. **O Ruptur é a Implementation Layer.** Ele não dita as regras globais de pensamento do ecossistema; ele apenas as executa de forma otimizada. Qualquer decisão sobre arquitetura cognitiva deve ser aprovada e registrada aqui em `state` (como em `state/decisions` ou `state/patterns`).
-2. **Identidade do Jarvis:** O motor do Jarvis vive no `ruptur`. O `ruptur` aloja seus 20 especialistas e 36 skills (`.agent/agents`, `.agent/skills`). No entanto, o propósito de existir do Jarvis está mapeado pelo `state`.
-3. **Descentralização Limitada:** O Jarvis orquestra e coordena times paralelos de agentes. A forma como agentes atuam em união ("Debate", "Subdelegação") segue padrões (ex. `playbooks/multi-agent-debate.md`) estipulados nesta camada canônica.
+1. **O Ruptur é o tronco de execução.** Ele implementa, opera e materializa decisões do ecossistema, mas não substitui o STATE como camada canônica de governança.
+2. **O modelo do ecossistema é quadrifásico por escopo.** Alpha ancora gênese e identidade raiz; State governa guardrails, memória curada e reconciliação; Omega governa lifecycle de sessão; Ruptur executa código, contratos, deploy, `connectome` e runbooks locais.
+3. **Catálogo operacional deve ser lido da fonte viva.** Agentes e skills devem ser consultados em `.agent/agents/` e `.agent/skills/`. Contagens voláteis não devem ser canonizadas em prosa sem registry ou evidência datada.
+4. **Descentralização limitada.** O Jarvis pode orquestrar times paralelos de agentes, mas os padrões de coordenação multiagente precisam estar formalizados no STATE.
+5. **Conflito não se resolve por improviso.** Se houver divergência entre `state`, `ruptur` e satélites, registrar decisão ou débito no STATE antes de harmonizar a camada operacional.
 
 ## 🏗️ Estrutura Crítica do Motor
 
 Agentes que lerem este arquivo encontram no `codex/ruptur`:
 
-- `.agent/ARCHITECTURE.md` - Subordinado a este documento. Mapeia a listagem técnica de skills.
-- `ops/jarvis/` - Scripts de orquestração local de infraestrutura e relays diários (`executive_daily_brief.py`).
-- `connectome/` - Memória state stateful ("consciência coletiva") operacional da rodada local (session-based).
+- `.agent/ARCHITECTURE.md` - Topologia técnica local de agentes e skills, subordinada às diretrizes canônicas do STATE.
+- `ops/jarvis/` - Scripts de orquestração local de infraestrutura e relays diários, como `executive_daily_brief.py`.
+- `connectome/` - Memória operacional stateful da rodada local.
+- `docs/governanca/` - Runbooks e governança local da camada de execução.
 
-**Regra de Ouro:** Não altere a configuração letal dos meta-agentes em `ruptur/agents` antes de descrever o impacto técnico e filosófico no diretório `state/decisions/`.
+## 🧾 Regra de Ouro
+
+Não altere meta-agentes, superfícies críticas ou regras de operação do `ruptur` sem:
+
+- identificar o domínio da verdade afetado
+- apontar a fonte canônica correspondente
+- registrar impacto como decisão ou débito quando houver conflito

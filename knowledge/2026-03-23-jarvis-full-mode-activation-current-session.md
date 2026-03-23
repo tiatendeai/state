@@ -71,7 +71,7 @@ artifacts_touched:
   - knowledge/jarvis-activation-menu.md
   - knowledge/2026-03-23-jarvis-performance-activation-current-session.md
   - knowledge/2026-03-23-jarvis-full-mode-activation-current-session.md
-  - knowledge/traces/trace-OMEGA-20260323-001002-8fcbcf98-jarvis-001.md
+  - knowledge/traces/trace-OMEGA-20260323-001002-8fcbcf98-jarvis-001-full-mode-activation.md
 ```
 
 ---
@@ -96,7 +96,7 @@ Sempre que o operador solicitar **Modo Full**:
 1. ativar todas as capacidades baseline reconhecidas
 2. usar explicitamente cada uma delas na rodada
 3. registrar a ativação em `knowledge/`
-4. registrar o trace em `knowledge/traces/trace-<session_id>.md`
+4. registrar o trace em `knowledge/traces/trace-<session_id>-<slug>.md`
 
 ---
 
@@ -104,3 +104,21 @@ Sempre que o operador solicitar **Modo Full**:
 
 Esta nota registra o uso do modo no STATE.  
 Ela não afirma que todas as automações já estão fechadas em runtime; afirma apenas que o modo passou a ter definição, protocolo e trilha auditável nesta sessão.
+
+---
+
+## 8. Revalidação nesta superfície de chat
+
+Em `2026-03-23T08:28:22-03:00`, o operador voltou a exigir uso explícito do **Modo Full** nesta conversa.
+
+Evidências materiais desta revalidação nesta superfície:
+
+- pedido explícito do operador nesta conversa
+- uso do protocolo já formalizado em `playbooks/jarvis.full-mode.md`
+- geração de nota de ativação, updates no corpus e trace nomeado da sessão
+
+Interpretação correta:
+
+- o Modo Full **já estava ativo e registrado** antes desta rodada
+- esta conversa **reconfirmou e reutilizou** o protocolo do modo
+- a exigência do operador foi atendida sem inventar runtime novo nem violar a regra de prudência

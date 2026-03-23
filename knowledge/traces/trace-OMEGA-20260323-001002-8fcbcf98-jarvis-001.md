@@ -1,85 +1,53 @@
 # Trace Card — `OMEGA-20260323-001002-8fcbcf98-jarvis-001`
 
-**Sessão:** `OMEGA-20260323-001002-8fcbcf98-jarvis-001`  
-**Data:** `2026-03-23`  
-**Executor / operador:** `diego`  
-**Escopo:** ativação e uso auditável do Modo Full do Jarvis no STATE  
-**Repositório(s):** `state`  
-**Resultado pretendido:** transformar o pedido explícito de “Modo Full” em protocolo canônico + registro auditável da sessão
+- manifestação: `jarvis.ruptur.control_plane`
+- repositório: `state`
+- objetivo: consolidar o pacote mínimo de intake assistido e padronizar a convenção atual de traces
+- data: `2026-03-23`
+- responsável: `diego`
 
----
+## Referências consultadas
 
-## 1. Contexto lido
+- `knowledge/traces/README.md`
+- `playbooks/jarvis.intake-gate.md`
+- `playbooks/jarvis.full-mode.md`
+- `knowledge/jarvis-activation-menu.md`
+- `knowledge/intake/README.md`
+- `knowledge/context7-governance.md`
+- `knowledge/projects-linkage.md`
 
-- fontes canônicas consultadas:
-  - `knowledge/jarvis-activation-menu.md`
-  - `playbooks/jarvis.performance-default.md`
-  - `knowledge/2026-03-23-jarvis-performance-activation-current-session.md`
-- conflitos conhecidos:
-  - o Modo Full ainda não possuía definição canônica própria
-  - o uso do modo ainda não tinha obrigação formal de registro
-- hipótese inicial:
-  - materializar um playbook, atualizar o menu/performance e registrar a ativação atual resolve a lacuna sem inventar runtime novo
+## Ferramentas usadas
 
-## 2. Entradas relevantes
+- leitura e ajuste local de documentação canônica
+- alinhamento de convenção de trace
 
-- pedido do usuário: ativar Modo Full, usar cada capacidade e registrar o uso do modo
-- constraints:
-  - respeitar apenas capacidades já reconhecidas
-  - não fingir automação não implementada
-  - manter tudo auditável no STATE
-- dependências:
-  - `session_id` oficial já reconhecido
-  - backlog e menu de ativação já existentes
+## Artefatos gerados
 
-## 3. Ações / tool calls / mudanças
+- `knowledge/intake/README.md`
+- `knowledge/context7-governance.md`
+- `knowledge/projects-linkage.md`
+- atualização de `knowledge/traces/README.md`
+- atualização de `playbooks/jarvis.intake-gate.md`
+- atualização de `playbooks/jarvis.full-mode.md`
+- atualização de `knowledge/jarvis-activation-menu.md`
 
-1. leitura das referências canônicas da sessão e do menu
-2. criação do `playbooks/jarvis.full-mode.md`
-3. atualização de `playbooks/jarvis.performance-default.md` e `knowledge/jarvis-activation-menu.md`
-4. criação da nota `knowledge/2026-03-23-jarvis-full-mode-activation-current-session.md`
-5. criação deste trace e atualização da nota de ativação da sessão
+## Riscos / incidentes
 
-## 4. Outputs e artefatos
+- traces históricos continuam existindo e devem se declarar como tal
+- Context7/RAG e GitHub Projects ainda são políticas locais simples, não automações fechadas
 
-- arquivos alterados:
-  - `playbooks/jarvis.performance-default.md`
-  - `knowledge/jarvis-activation-menu.md`
-  - `knowledge/2026-03-23-jarvis-performance-activation-current-session.md`
-- artefatos gerados:
-  - `playbooks/jarvis.full-mode.md`
-  - `knowledge/2026-03-23-jarvis-full-mode-activation-current-session.md`
-  - `knowledge/traces/trace-OMEGA-20260323-001002-8fcbcf98-jarvis-001.md`
-- links internos:
-  - `JARVIS-AUT-004`
-  - `JARVIS-AUT-005`
-  - `JARVIS-AUT-010`
+## Scorecard
 
-## 5. Validação
+- clareza: `5`
+- autoridade: `5`
+- confiabilidade: `4`
+- impacto: `4`
+- reversibilidade: `5`
+- total: `23`
 
-- como o resultado foi verificado:
-  - conferência manual dos arquivos gerados/atualizados
-  - checagem de coerência entre menu, playbook e nota de sessão
-- evidência material:
-  - Modo Full agora tem playbook próprio
-  - a sessão atual tem nota de ativação e trace
-  - o menu e o playbook default passaram a exigir registro do modo
-- riscos remanescentes:
-  - falta ainda refletir o modo no runtime do `omega` e do `codex/ruptur`
-  - a automação operacional do modo continua dependente de etapas futuras fora deste repositório
+## Decisão do gate
 
-## 6. Scorecard
+- decisão: `promover`
+- destino: `knowledge/traces/`
+- observações: `trace-<session_id>.md` passa a ser o canônico atual; variantes com slug são históricas, complementares ou de transição.
 
-| Critério | Nota (0-5) | Evidência |
-| --- | --- | --- |
-| Clareza | 5 | playbook, menu, nota de sessão e trace convergem na mesma definição |
-| Autoridade | 5 | domínio de governança corretamente tratado no STATE |
-| Confiabilidade | 4 | trilha material criada e validada localmente; falta apenas espelhamento cross-repo |
-| Impacto | 5 | a ativação deixa de ser só conversa e vira protocolo reaproveitável |
-
-**Total:** 19  
-**Recomendação de gate:** `promover`
-
-## 7. Próximo passo explícito
-
-- refletir o Modo Full no `omega` e no `codex/ruptur` quando a camada operacional for atualizada

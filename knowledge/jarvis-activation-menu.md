@@ -33,7 +33,7 @@ Ao receber o trigger, o sistema realiza:
 Ao receber `Modo Full` / `Full Mode`, o sistema:
 1. preserva a sessão oficial já ativa;
 2. sobe todas as capacidades baseline como exigíveis na rodada;
-3. registra o uso do modo no `state/knowledge` e em `knowledge/traces/trace-<session_id>.md`.
+3. registra o uso do modo em `knowledge/` e em `knowledge/traces/trace-<session_id>.md`.
 
 ---
 
@@ -128,10 +128,11 @@ Quando o **Modo Full** for ativado, a sessão deve ainda registrar:
 
 ## 6. Próximos passos sugeridos / Suggested next steps
 
-1. **Incluir este menu no `state/knowledge`** e replicar em `codex/ruptur/JARVIS.md` e `connectome/status.json` para manter dualidade.
+1. **Incluir este menu em `knowledge/`** e replicar em `codex/ruptur/JARVIS.md` e `connectome/status.json` para manter dualidade.
 2. **Criar snippet automatizado** no chat (texto acima) para ser enviado sempre que `Jarvis Start / Jarvis Iniciar` for reconhecido.
-3. **Registrar comando `/performance-check` no `omega/workflow`** e no `state/playbooks/jarvis.performance-default.md` como checklist auditável.
+3. **Registrar comando `/performance-check` no `omega/workflow`** e em `playbooks/jarvis.performance-default.md` como checklist auditável.
 4. **Adotar o menu como base para futuras interfaces** (WhatsApp menus com `/send/menu`, CLI quick commands, etc.).
+5. **Consultar os guias locais** de `knowledge/intake/README.md`, `knowledge/context7-governance.md` e `knowledge/projects-linkage.md` quando a rodada envolver promoção ao `state`, RAG/Context7 ou GitHub Projects.
 
 ---
 
@@ -140,5 +141,5 @@ Quando o **Modo Full** for ativado, a sessão deve ainda registrar:
 - `codex/ruptur/backend/app/api/uazapi_webhook.py` (lista de comandos)
 - `codex/ruptur/RAG/CONTEXT7.md` (cases e comandos já usados)
 - `playbooks/jarvis.performance-default.md` (capabilities baseline)
-- `state/playbooks/jarvis.handoff.md` + `knowledge/2026-03-23-plano-mestre-jarvis-autonomia.md` (estratégia de handoff e menu)
+- `playbooks/jarvis.handoff.md` + `knowledge/2026-03-23-plano-mestre-jarvis-autonomia.md` (estratégia de handoff e menu)
 - `codex/ruptur/deploy/host2/baileys/src/index.mjs` (suporte a menus interativos)
