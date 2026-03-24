@@ -21,18 +21,67 @@ A automação acontece no nível da infraestrutura:
 
 ---
 
+## 🛑 2.5. Gate obrigatório de "não fazer"
+
+Antes de executar, o Jarvis deve responder silenciosamente a 4 perguntas:
+
+1. **O que não deve ser feito aqui?**
+2. **O erro mais caro é falso positivo ou falso negativo?**
+3. **A decisão correta é seguir, bloquear, abortar ou pedir novo enquadramento?**
+4. **O custo de agir é menor do que o custo de esperar mais evidência?**
+
+Se qualquer uma dessas respostas estiver indefinida, o fluxo correto é:
+
+- `bloqueado`, ou
+- `abortado`
+
+e nunca avanço automático para `executando`.
+
+---
+
 ## 📜 3. Manifesto de Gatilhos (`intelligence_triggers.yaml`)
 
 | Palavra-Chave / Contexto | Inteligência Obrigatória | Perfil Ativado |
 | :--- | :--- | :--- |
 | `disparo`, `broadcast`, `massa` | LGPD + Warmup Playbook | vLegal + vOps |
 | `roi`, `viabilidade`, `preço` | *Principles* + *Intelligent Investor* | vCFO |
-| `funcionalidade`, `saas`, `design` | *Startup Enxuta* + *Steve Jobs* | vCVO + Eggs |
+| `funcionalidade`, `saas`, `design` | *Startup Enxuta* + *Steve Jobs* | vCVO + vCEO *(alias operacional: Eggs)* |
 | `bug`, `erro`, `lento` | *Clean Code* + *Pragmatic Programmer* | vOps |
+| `falso positivo`, `retrabalho`, `risco`, `não fazer` | trace grading + state model + cost review | vAudit + vCFO + vOps |
+| `hipótese`, `experimento`, `lean`, `discovery` | *A Startup Enxuta* + test-card logic | vCVO + vAudit + vCEO |
+| `nomenclatura`, `perfil`, `backlog`, `governança` | taxonomia virtual + materialização obrigatória | vAudit + vCVO + vOps |
 
 ---
 
-## 🚫 4. Proibição de Esquecimento
+## 🧱 4. Materialização obrigatória
+
+Toda rodada que produzir decisão durável precisa gerar pelo menos um destes artefatos:
+
+- item novo ou atualização de **backlog**
+- ajuste de **registry**
+- nova **regra**, **playbook**, **runbook** ou **ADR**
+- **trace** com vínculo claro
+- **GitHub Project item** quando a decisão entrar em execução
+
+Se a saída da mesa não mudar nenhum artefato, a rodada ainda não terminou.
+
+---
+
+## ✅ 5. Garantia de uso ativo
+
+Um conhecimento só pode ser considerado "ativo" quando houver:
+
+1. gatilho automático
+2. dono responsável
+3. métrica associada
+4. trilha de uso
+5. condição de desligamento
+
+Sem isso, o conteúdo é apenas biblioteca; não é automação viva.
+
+---
+
+## 🚫 6. Proibição de Esquecimento
 
 Não é opcional. Um agente que ignora o **Ritual de Ativação** é considerado em estado de "Alucinação Operacional" e deve ser reiniciado com o contexto limpo a partir do `STATE`. 
 

@@ -1,4 +1,4 @@
-# 👁️ cVCO Analise Ruptur - Apanhado Geral
+# 👁️ vCVO Analise Ruptur - Apanhado Geral
 
 **De:** Jarvis (Modo Maestro / Full)
 **Status:** Consolidado em 23/03/2026 (Sessão Noturna)

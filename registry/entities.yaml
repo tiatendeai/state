@@ -42,6 +42,12 @@ entities:
         focus: "visão estratégica, priorização e semente de produto"
         knowledge_domain: "state/knowledge/business/"
         source_refs: ["The Innovator's Dilemma", "ruptur-blueprint.md"]
+      - id: vceo
+        runtime_alias: "eggs"
+        role: "vCEO (Chief Executive Officer virtual)"
+        focus: "execução operacional, missões, disciplina de entrega e cadência"
+        knowledge_domain: "state/knowledge/management/"
+        source_refs: ["runbook-jarvis-vc-level.md", "jarvis_ops_repo", "backend/README.md"]
       - id: iazinha
         role: "CX & Storytelling"
         focus: "interface de acolhimento, tradução técnica e primeiro contato"
