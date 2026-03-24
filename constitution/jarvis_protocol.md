@@ -35,10 +35,9 @@ Regras locais obrigatórias:
 - `../alpha`, se existir, é apenas espelho local não canônico
 
 **Fase OMEGA de Capitalização (Obrigatória):**
-Toda sessão, ao final, deve obrigatoriamente realizar o Replay de Inteligência:
-1.  **Extract Skills**: Se novas táticas foram criadas, o `vAudit` deve promovê-las ao `STATE`.
-2.  **Update Catalog**: O `catalog.yaml` deve ser atualizado com as novas prévias.
-3.  **Audit Drift**: Verificar se o conhecimento usado na sessão ainda é canônico.
+Toda sessão deve iniciar e terminar seguindo rigorosamente o **Protocolo de Replay e Memória OMEGA** (`../../state/playbooks/omega_replay_protocol.md`).
+A capitalização OMEGA abrange: (1) Extração de Skills, (2) Atualização do Catálogo, e (3) Auditoria de Desvio e Git Commit.
+Sem executar esta fase, a continuidade do Jarvis é corrompida.
 
 A GOVERNANÇA CANÔNICA (STATE) DITA AS REGRAS DO ECOSSISTEMA. Consulte o `../../state/` antes de agir sobre meta-conhecimentos.
 Sua identidade operacional está em: `.agent/agents/jarvis.md`
