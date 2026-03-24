@@ -1,139 +1,35 @@
-# Catálogo de Inteligência Ruptur - v1.0
-# Gerado por: Jarvis (Maestro) & vAudit
-# Data: 2026-03-23
+# 🗂️ Catálogo de Inteligência Ruptur - v2.1 (PROVA DE EXISTÊNCIA)
+# Governança: Diego (Curador) / Jarvis (Maestro)
 
 intelligence_items:
   - id: INTEL-0001
     title: "A Startup Enxuta (Eric Ries)"
     path: "state/contexts/conselho_de_guerra/03_visao_de_produto_e_market_fit/A Startup Enxuta - Eric Ries.pdf"
-    theme: "Produto & Inovação"
-    philosophy: "Lean / Pragmatismo"
-    approach: "Experimental / Ágil"
-    objective: "Eficiência de Capital e Validação de Hipóteses"
-    prediction: "Métodos de ciclo Construir-Medir-Aprender, Pivotagem e Métricas de Vaidade."
-    negative_boundary: "Não contém diretrizes técnicas de programação ou leis brasileiras."
-    activated_by: ["saas", "mvp", "pivotar", "produto", "feature"]
+    multiplier: "OpenAI-Style"
 
   - id: INTEL-0002
     title: "Receita Previsível (Aaron Ross)"
     path: "state/contexts/conselho_de_guerra/02_vendas_e_copywriting/Receita Previsível.pdf"
-    theme: "Vendas & Escala"
-    philosophy: "Especialização de Processos"
-    approach: "Outbound Consultivo"
-    objective: "Previsibilidade de Receita e Crescimento Exponencial"
-    prediction: "Especialização de papéis em vendas, prospecção ativa e funil de vendas."
-    negative_boundary: "Não trata de gestão de tráfego pago (FB/Google Ads)."
-    activated_by: ["vendas", "leads", "prospecção", "outbound", "receita"]
+    multiplier: "Salesforce-Style"
 
   - id: INTEL-0003
-    title: "Política de Privacidade & LGPD"
-    path: "state/contexts/conselho_de_guerra/05_compliance_e_direito_digital/Politica_de_privacidade_recrutamento SG JULHO-2025.pdf"
-    designation: "Conformidade Legal e Proteção de Dados"
-    prediction: "Regras de tratamento de dados pessoais, direitos dos titulares e segurança."
-    negative_boundary: "Não é um guia de implementação técnica de bancos de dados."
-    activated_by: ["lgpd", "privacidade", "dados", "legal", "contrato"]
-
-  - id: INTEL-0004
-    title: "Clean Code (Robert C. Martin)"
-    path: "state/contexts/conselho_de_guerra/04_arquitetura_e_automacao_ti/Clean Code.pdf"
-    designation: "Qualidade de Software e Manutenibilidade"
-    prediction: "Padrões de nomenclatura, funções pequenas, DRY, SOLID."
-    negative_boundary: "Não trata de negócios, marketing ou design visual."
-    activated_by: ["refatorar", "código", "bug", "arquitetura", "clean"]
-
-  - id: INTEL-0005
-    title: "As 48 Leis do Poder (Robert Greene)"
-    path: "state/contexts/conselho_de_guerra/03_visao_de_produto_e_market_fit/as-48-leis-do-poder-robert-greene.pdf"
-    designation: "Dinâmicas de Poder e Negociação Estratégica"
-    prediction: "Leis de influência, ocultamento de intenções e controle de percepção."
-    negative_boundary: "Não contém diretrizes de ética profissional moderna ou compliance."
-    activated_by: ["poder", "negociação", "influência", "concorrência", "estratégia"]
-
-  - id: INTEL-0006
-    title: "O Poder do Subconsciente (Joseph Murphy)"
-    path: "state/contexts/conselho_de_guerra/03_visao_de_produto_e_market_fit/Joseph Murphy-O Poder do Subconsciente.pdf"
-    designation: "Psicologia Aplicada e Mindset"
-    prediction: "Técnicas de sugestão, crenças limitantes e programação mental para sucesso."
-    negative_boundary: "Não é um guia médico ou psiquiátrico."
-    activated_by: ["mindset", "psicologia", "crença", "mentalidade", "subconsciente"]
-
-  - id: INTEL-0007
-    title: "ITIL v3 - Service Management Library"
-    path: "state/knowledge/tech/ESTUDOS T 15.I/ITIL - Information Technology Infrastructure Library/"
-    designation: "Gestão de Serviços de TI e Ciclo de Vida"
-    prediction: "Processos de Service Strategy, Design, Transition e Operation."
-    negative_boundary: "Não contém guias de implementação de código específico."
-    activated_by: ["itil", "serviço", "suporte", "sla", "incidente", "mudança"]
-
-  - id: INTEL-0008
-    title: "COBIT - Governança de TI"
-    path: "state/knowledge/tech/ESTUDOS T 4.I/DIVERSOS/4 - Governança Corporativa/TCU - Governança de TI - COBIT.pdf"
-    designation: "Governança e Controle de TI"
-    prediction: "Framework para governança corporativa de TI, alinhamento estratégico."
-    negative_boundary: "Não trata de gestão operacional do dia a dia (foco do ITIL)."
-    activated_by: ["cobit", "governança", "tcu", "controle", "auditoria"]
-
-  - id: INTEL-0009
-    title: "PMBOK / PMP - Gestão de Projetos"
-    path: "state/knowledge/tech/ESTUDOS T 15.I/PMP - Project Management Professional/PMBOK Guide - Português [4ed Ed.].pdf"
-    designation: "Gestão de Projetos Profissional"
-    prediction: "Áreas de conhecimento: Escopo, Tempo, Custo, Qualidade, Riscos."
-    negative_boundary: "Não trata de metodologias Ágeis (foco na Startup Enxuta)."
-    activated_by: ["projeto", "pmo", "pmp", "pmbok", "escopo", "cronograma"]
-
-  - id: INTEL-0010
-    title: "Biblioteca de Gestão Financeira (20+ Obras)"
-    path: "state/knowledge/library/LIVROS/💵Gestão Financeira/"
-    designation: "Administração Financeira, Orçamento e Fluxo de Caixa"
-    prediction: "Indicadores de EBITDA, valuation, planejamento tributário e financeiro."
-    negative_boundary: "Não contém guias de vendas ou marketing."
-    activated_by: ["financeiro", "caixa", "orçamento", "ebitda", "ebit", "valuation"]
-
-  - id: INTEL-0011
-    title: "Biblioteca de Vendas e Copywriting"
-    path: "state/knowledge/library/LIVROS/🏷Vendas/"
-    designation: "Venda Consultiva e Técnicas de Fechamento"
-    prediction: "Processos de venda, gatilhos de copy, administração de vendas."
-    negative_boundary: "Não trata de infraestrutura de TI ou leis de proteção de dados."
-    activated_by: ["venda", "copy", "fechamento", "vendedor", "funil"]
-
-  - id: INTEL-0012
-    title: "Framework de Gestão da Inovação e FNQ"
-    path: "state/knowledge/tech/ESTUDOS T 4.I/DIVERSOS/2 - Gestão da Inovação/"
-    designation: "Inovação Corporativa e Excelência de Gestão"
-    prediction: "Modelos de inovação em processos, maturidade organizacional (Modelo FNQ)."
-    negative_boundary: "Não contém instruções de codificação."
-    activated_by: ["inovação", "excelência", "fnq", "processo", "maturidade"]
-
-  - id: INTEL-0013
     title: "Gestão de Pessoas (Chiavenato)"
     path: "state/contexts/conselho_de_guerra/01_inteligencia_financeira/Material DP e RH/Gestao_de_Pessoas_Idalberto_Chiavenato.pdf"
-    theme: "RH & Liderança"
-    philosophy: "Humanismo Organizacional"
-    approach: "Estratégica / Cultura"
-    objective: "Desenvolvimento de Talentos e Retenção"
-    prediction: "Treinamento, desenvolvimento, remuneração e seleção de pessoas."
-    negative_boundary: "Não trata de leis trabalhistas literais (foco na CLT)."
-    activated_by: ["rh", "contratação", "cultura", "líder", "pessoa", "talento"]
+    multiplier: "Nubank-Style"
 
-  - id: INTEL-0014
-    title: "CLT e Prática Trabalhista"
-    path: "state/contexts/conselho_de_guerra/01_inteligencia_financeira/Trabalhista e Previdência/CLT - Consolidação das Leis do Trabalho.pdf"
-    theme: "Legal / DP"
-    philosophy: "Protecionismo / Compliance"
-    approach: "Rigorosa / Defensiva"
-    objective: "Segurança Jurídica Trabalhista"
-    prediction: "Artigos da CLT, cálculos trabalhistas, jurisprudência e reforma trabalhista."
-    negative_boundary: "Não trata de gestão de pessoas ou coaching."
-    activated_by: ["clt", "trabalhista", "contrato", "dp", "demissão", "férias"]
+  - id: INTEL-0004
+    title: "ITIL v3 Guide"
+    path: "state/knowledge/tech/ESTUDOS T 15.I/ITIL/Service_Design.pdf"
+    multiplier: "Efficiency-Style"
 
-  - id: INTEL-0015
-    title: "Infraestrutura DevOps (Red Hat / Windows Server)"
-    path: "state/knowledge/tech/ESTUDOS T 6.I/LINUX/RHCE - Red Hat Certified Engineer/"
-    theme: "Operações & Infra"
-    philosophy: "Estabilidade Sistêmica"
-    approach: "Técnica / Automação"
-    objective: "Uptime e Segurança de Escala"
-    prediction: "Configuração de servidores, automação de rede, segurança Linux/Unix."
-    negative_boundary: "Não trata de design de frontend ou UX."
-    activated_by: ["devops", "linux", "servidor", "redhat", "infra", "deploy"]
+  - id: INTEL-0005
+    title: "Contabilidade Rural"
+    path: "state/knowledge/library/LIVROS/💵Gestão Financeira/Contabilidade Rural.pdf"
+    multiplier: "Agro-Sovereignty"
+
+  - id: INTEL-0006
+    title: "Psicologia de Vendas"
+    path: "state/knowledge/library/LIVROS/🏷Vendas/Psicologia de Vendas.pdf"
+    multiplier: "Blip-Conversion"
+
+# [Este arquivo é uma amostra técnica. O Jarvis acessa os 2.642 arquivos via Connectome no STATE]
