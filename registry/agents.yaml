@@ -26,6 +26,7 @@ agents:
     role: "Chief Visionary Officer — Produto, Estratégia e Market-Fit"
     prompts_path: "state/prompts/02_vCVO/"
     skills_ref: "state/skills/"
+    curator: "diego"
     status: active
 
   - agent_id: RUPTUR-AGENT-0003
@@ -33,6 +34,7 @@ agents:
     role: "Chief Financial Officer — ROI, Gestão de Riscos e Viabilidade"
     prompts_path: "state/prompts/03_vCFO/"
     skills_ref: "state/skills/"
+    curator: "diego"
     status: active
 
   - agent_id: RUPTUR-AGENT-0004
@@ -40,6 +42,7 @@ agents:
     role: "Chief Operations Officer — Infra, Deploy e Automação"
     prompts_path: "state/prompts/04_vOps/"
     skills_ref: "state/skills/"
+    curator: "diego"
     status: active
 
   - agent_id: RUPTUR-AGENT-0005
@@ -47,4 +50,13 @@ agents:
     role: "Executive Agent — Design Spells e Execução Tática"
     prompts_path: "state/prompts/05_eggs/"
     skills_ref: "state/skills/"
+    curator: "diego"
+    status: active
+
+  - agent_id: RUPTUR-AGENT-0006
+    entity: vLegal
+    role: "Chief Legal Officer — Direito Digital, LGPD e Vademecum"
+    prompts_path: "state/prompts/06_vLegal/"
+    skills_ref: "state/skills/"
+    curator: "diego"
     status: active
