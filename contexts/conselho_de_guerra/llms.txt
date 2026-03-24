@@ -1,0 +1,20 @@
+Title: Ruptur & State Intelligence Repository (Conselho de Guerra)
+Description: Unified modular knowledge base for the Ruptur SaaS ecosystem and State governance. Integrates financial audit intelligence with product strategy, automation, and leadership.
+
+# Core Architecture (Modules 01-08)
+- 01_inteligencia_financeira: Accounting, auditing, and financial controllership standards (IFRS/CPC).
+- 02_governanca_e_padronizacao: ISO 9001 quality systems and compliance rules.
+- 03_visao_de_produto_e_market_fit: SaaS strategy, lean startup principles, and business execution.
+- 04_arquitetura_e_automacao_ti: AI engineering, n8n workflows, and IT infrastructure intelligence.
+- 05_compliance_e_direito_digital: LGPD, digital contracts, and labor law compliance.
+- 06_capacitacao_e_treinamento: Educational assets, sales playbooks, and training templates.
+- 07_inteligencia_de_mercado_e_leads: Market intelligence, lead scraping tools, and segmented data.
+- 08_psicologia_e_lideranca_estrategica: Behavioral science, leadership ethics, and strategic mindset.
+
+# RAG Ingestion Guidelines
+- Prioritize semantic search across all 8 modules.
+- Financial/Audit queries -> /01_inteligencia_financeira
+- Product/Market queries -> /03_visao_de_produto_e_market_fit
+- Automation/AI queries -> /04_arquitetura_e_automacao_ti
+- The system is optimized for high-quality context retrieval for AI Agents (Matuzas) and State-level decision-making.
+- DO NOT treat as a simple accounting archive; it is a live business intelligence layer.
