@@ -1,0 +1,52 @@
+Machine Learning: Introdução a classificação
+
+
+1	1. Classificando emails, animais e muito mais
+1.1	Vídeo 1.1
+1.2	Vídeo 1.2
+1.3	Vídeo 1.3
+1.4	Vídeo 1.4
+1.5	Vídeo 1.5
+1.6	Vídeo 1.6
+1.7	Vídeo 1.7
+1.8	Acesso aos arquivos
+
+2	2. Importando, classificando e validando um modelo
+2.1	Vídeo 2.1
+2.2	Vídeo 2.2
+2.3	Vídeo 2.3
+2.4	Vídeo 2.4
+2.5	Vídeo 2.5
+2.6	Vídeo 2.6
+
+3	3. Classificação de variáveis categóricas
+3.1	Vídeo 3.1
+3.2	Vídeo 3.2
+3.3	Vídeo 3.3
+3.4	Vídeo 3.4
+3.5	Vídeo 3.5
+3.6	Vídeo 3.6
+3.7	Vídeo 3.7
+3.8	Vídeo 3.8
+
+4	4. O problema do sucesso e o algoritmo burro
+4.1	Vídeo 4.1
+4.2	Vídeo 4.2
+4.3	Vídeo 4.3
+4.4	Vídeo 4.4
+4.5	Vídeo 4.5
+4.6	Vídeo 4.6
+4.7	Vídeo 4.7
+4.8	Vídeo 4.8
+
+5	5. Naive bayes e maxium a posteriori por trás dos panos
+5.1	Vídeo 5.1
+5.2	Vídeo 5.2
+5.3	Vídeo 5.3
+
+6	6. Testando diferentes modelos e validando o vencedor
+6.1	Vídeo 6.1
+6.2	Vídeo 6.2
+6.3	Vídeo 6.3
+6.4	Vídeo 6.4
+6.5	Vídeo 6.5
