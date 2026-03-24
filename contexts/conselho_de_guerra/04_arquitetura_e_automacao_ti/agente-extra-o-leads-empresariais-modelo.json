@@ -1,0 +1,641 @@
+{
+  "name": "agente_extração_leads_empresariais/modelo",
+  "nodes": [
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4.1-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        -820,
+        940
+      ],
+      "id": "7c93c1fb-caa3-4a8e-adb5-c4b0a71ca110",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "q3FLKkl2WPB2wbxg",
+          "name": "OpenAi InfoIA"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "toolDescription": "Busca dados de estabelecimentos, empresas e serviços a partir de um termo de busca",
+        "method": "POST",
+        "url": "url_webhook",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "termo_de_busca",
+              "value": "={{ /*n8n-auto-generated-fromAI-override*/ $fromAI('parameters0_Value', ``, 'string') }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequestTool",
+      "typeVersion": 4.2,
+      "position": [
+        -840,
+        420
+      ],
+      "id": "99de3044-8dbf-4bc1-82bd-ab3529571c76",
+      "name": "pega_dados_dos_negocios"
+    },
+    {
+      "parameters": {
+        "contextWindowLength": 50
+      },
+      "id": "8554e0da-53ba-43ae-9de1-84a2048e1e12",
+      "name": "Memória",
+      "type": "@n8n/n8n-nodes-langchain.memoryBufferWindow",
+      "position": [
+        -1000,
+        420
+      ],
+      "typeVersion": 1.3
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "id": "fdc2eb7f-f0bc-4256-9eb6-da0345acd199",
+      "name": "ChatInput",
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "position": [
+        -1360,
+        200
+      ],
+      "webhookId": "44c8d075-59d0-431c-9f70-8d428d2dbecb",
+      "typeVersion": 1.1
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "112bb213-d3a9-442e-8c8a-1f55c890429e",
+        "responseMode": "lastNode",
+        "responseData": "allEntries",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -1760,
+        760
+      ],
+      "id": "26d09439-2434-4e23-994b-e19f1a9f30d2",
+      "name": "Webhook",
+      "webhookId": "112bb213-d3a9-442e-8c8a-1f55c890429e"
+    },
+    {
+      "parameters": {
+        "url": "https://local-business-search.p.rapidapi.com/search",
+        "sendQuery": true,
+        "queryParameters": {
+          "parameters": [
+            {
+              "name": "query",
+              "value": "={{ $('Webhook').item.json.body.termo_de_busca }}"
+            },
+            {
+              "name": "limit",
+              "value": "50"
+            },
+            {
+              "name": "language",
+              "value": "PT"
+            },
+            {
+              "name": "region",
+              "value": "br"
+            },
+            {
+              "name": "extract_emails_and_contacts",
+              "value": "true"
+            }
+          ]
+        },
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "x-rapidapi-host",
+              "value": "local-business-search.p.rapidapi.com"
+            },
+            {
+              "name": "x-rapidapi-key",
+              "value": "SUA_API_KEY"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -1520,
+        760
+      ],
+      "id": "0076e52d-72a7-4fc2-8d39-5d45497cb544",
+      "name": "rapidapi_local-business-search"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Dados Brutos do site: {{ $('scraping_site_scraptio').item.json.data }}",
+        "messages": {
+          "messageValues": [
+            {
+              "message": "=🧠 **Prompt Ultra-Refinado — Agente de Análise de Negócios para Prospecção**\n\n> Você é um analista empresarial voltado a prospecção. Receberá *apenas* o texto cru (via scraping) de um site corporativo.\n> **Sua tarefa:** condensar, em um **único parágrafo** (50 – 120 palavras), as informações mais relevantes que sustentem uma abordagem comercial estratégica.\n>\n> **Diretrizes obrigatórias**\n>\n> 1. **Conteúdo** – Reúna tudo que o texto revelar ou sugerir sobre: proposta de valor, produtos/serviços, segmentos atendidos, diferenciais competitivos, porte/maturidade, presença geográfica, sinais de crescimento ou inovação, e qualquer pista útil para oportunidades de negócio. Use bom senso para inferir dados implícitos; omita o que não existir.\n> 2. **Forma** – Escreva em português claro, profissional e objetivo, evitando jargões excessivos. Estruture frases fluídas, conectadas, sem marcadores, títulos, quebras de linha extras ou comentários meta-textuais. Não coloque “Resumo:” nem conteúdo antes/depois do parágrafo.\n> 3. **Precisão** – Preserve fatos, nomes próprios e números relevantes; elimine slogans vazios, repetições e detalhes legais irrelevantes.\n> 4. **Utilidade Comercial** – Destaque o que possa servir de gancho para conversas de vendas (ex.: expansão internacional, parcerias estratégicas, foco ESG, adoção de tecnologias emergentes).\n> 5. **Tom** – Neutro-analítico, levemente persuasivo: evidencie valor sem soar promocional.\n>\n> **Saída final** – entregue exclusivamente o parágrafo resumido, sem quaisquer palavras ou caracteres adicionais.\n\nAtenão, quanto você não receber os dados brutos do site deve retornar: \"-\"\n\nSomente isso, sem falar nada antes nem depois."
+            }
+          ]
+        },
+        "batching": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chainLlm",
+      "typeVersion": 1.7,
+      "position": [
+        -840,
+        760
+      ],
+      "id": "90a90600-a85e-48bf-8634-b8ee29d2b038",
+      "name": "resumo_dados_site"
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1UazuMy1WIt39SeRlToHkCvEbmhydzGD-WjBy3fdpg8c",
+          "mode": "list",
+          "cachedResultName": "Negócios Extraídos",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1UazuMy1WIt39SeRlToHkCvEbmhydzGD-WjBy3fdpg8c/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Página1",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1UazuMy1WIt39SeRlToHkCvEbmhydzGD-WjBy3fdpg8c/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Nome": "={{ $('separa_itens').item.json.name }}",
+            "Endereço": "={{ $('separa_itens').item.json.full_address }}",
+            "Cidade": "={{ $('separa_itens').item.json.city }}",
+            "CEP": "={{ $('separa_itens').item.json.zipcode }}",
+            "Rating": "={{ $('separa_itens').item.json.rating }}",
+            "Quantidade de Avaliações": "={{ $('separa_itens').item.json.review_count }}",
+            "Site": "={{ $('separa_itens').item.json.website }}",
+            "Dados Brutos do Site": "={{ $('scraping_site_scraptio').item.json.data }}",
+            "Business_id": "={{ $('separa_itens').item.json.business_id }}",
+            "Telefone": "={{ $('separa_itens').item.json.phone_number }}",
+            "Estado": "={{ $('separa_itens').item.json.state }}",
+            "Resumo": "={{ $('resumo_dados_site').item.json.text }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Business_id",
+              "displayName": "Business_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Nome",
+              "displayName": "Nome",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Telefone",
+              "displayName": "Telefone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Endereço",
+              "displayName": "Endereço",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Cidade",
+              "displayName": "Cidade",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Estado",
+              "displayName": "Estado",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "CEP",
+              "displayName": "CEP",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Rating",
+              "displayName": "Rating",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Quantidade de Avaliações",
+              "displayName": "Quantidade de Avaliações",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Site",
+              "displayName": "Site",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Resumo",
+              "displayName": "Resumo",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Dados Brutos do Site",
+              "displayName": "Dados Brutos do Site",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.6,
+      "position": [
+        -480,
+        760
+      ],
+      "id": "4e41edc8-b200-4eef-b892-6f823225bc09",
+      "name": "inclui_dados_planilha",
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "7zgKcP4a80kQgTpj",
+          "name": "Agência Arkka"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "26b63941-4d20-43ff-af60-6b148ce28706",
+              "name": "response",
+              "value": "Preenchi lá na planilha os negócios que eu encontrei",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -280,
+        760
+      ],
+      "id": "33c8b1f8-c758-4efc-a5b5-3586116c1412",
+      "name": "responde_ia"
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "=Prompt do Agente de Prospecção de Negócios\n\nIDENTIDADE E MISSÃO\nVocê é um assistente especializado em prospecção de negócios. Sua função principal é interpretar solicitações de usuários sobre informações de empresas e negócios e acionar a ferramenta pega\\_dados\\_dos\\_negocios para coletar esses dados automaticamente em uma planilha.\n\nFERRAMENTA DISPONÍVEL\nNome: pega\\_dados\\_dos\\_negocios\nParâmetro obrigatório: termo\\_de\\_busca\nDescrição: string no formato \"\\[O que você busca] em \\[Cidade], \\[País/Estado]\". O termo pode ser escrito em português ou em inglês.\n\nDESCRIÇÃO DETALHADA DE termo\\_de\\_busca\nO campo termo\\_de\\_busca é utilizado para encontrar informações sobre estabelecimentos ou serviços em uma localidade específica. O texto pode estar em português ou em inglês e deve seguir esta estrutura:\n\\[O que você busca] em \\[Cidade], \\[País/Estado]\n\n* \\[O que você busca]: tipo de serviço ou estabelecimento (ex.: Hotéis, Restaurantes, Museus).\n* em: palavra fixa \"em\" (ou \"in\", se preferir inglês).\n* \\[Cidade], \\[País/Estado]: nome da cidade e do país ou estado.\n\nEXEMPLOS RÁPIDOS\nIntenção: Hotéis em São Francisco, EUA      -> termo\\_de\\_busca: Hotéis em São Francisco, EUA\nIntenção: Farmácias em Rio de Janeiro       -> termo\\_de\\_busca: Farmácias em Rio de Janeiro, Brasil\nIntenção: Restaurantes japoneses em São Paulo -> termo\\_de\\_busca: Restaurantes japoneses em São Paulo, Brasil\nIntenção: Aeroportos em Londres             -> termo\\_de\\_busca: Aeroportos em Londres, Reino Unido\n\nRESPONSABILIDADES PRINCIPAIS\n\n1. Interpretar solicitações: identificar tipo de negócio, localização e filtros.\n2. Construir o termo\\_de\\_busca: montar a string no formato exigido, em português ou inglês conforme necessário.\n3. Acionar a ferramenta:\n   pega\\_dados\\_dos\\_negocios({ \"termo\\_de\\_busca\": \"\\[consulta]\" })\n4. Confirmar execução: informar ao usuário que os dados foram coletados e adicionados à planilha.\n\nDIRETRIZES DE COMPORTAMENTO\nAo receber uma solicitação:\n\n* Identificar os elementos‑chave.\n* Normalizar os termos e montar o termo\\_de\\_busca no formato correto.\n* Chamar a ferramenta e responder de forma concisa ao usuário.\n\nFORMATO DA RESPOSTA AO USUÁRIO\n\n* Confirmar o que foi solicitado.\n* Informar que a busca foi realizada e que os dados estão na planilha.\n\nEXEMPLOS DE INTERAÇÃO\nExemplo 1\nUsuário: \"Quero informações sobre clínicas médicas no Rio de Janeiro\".\nAgente:\ntermo\\_de\\_busca: Clínicas médicas em Rio de Janeiro, Brasil\nChamada: pega\\_dados\\_dos\\_negocios({ \"termo\\_de\\_busca\": \"Clínicas médicas em Rio de Janeiro, Brasil\" })\nResposta: Busquei e coletei informações sobre clínicas médicas no Rio de Janeiro. Os dados já foram adicionados à sua planilha de prospecção.\n\nExemplo 2\nUsuário: \"Preciso de dados de restaurantes japoneses em São Paulo\".\nAgente:\ntermo\\_de\\_busca: Restaurantes japoneses em São Paulo, Brasil\nChamada: pega\\_dados\\_dos\\_negocios({ \"termo\\_de\\_busca\": \"Restaurantes japoneses em São Paulo, Brasil\" })\nResposta: Coletei informações sobre restaurantes japoneses em São Paulo. Todos os dados foram inseridos na planilha.\n\nExemplo 3\nUsuário: \"Me ajuda a encontrar escritórios de advocacia especializados em direito trabalhista na Zona Sul do Rio\".\nAgente:\ntermo\\_de\\_busca: Escritórios de advocacia trabalhista em Zona Sul Rio de Janeiro, Brasil\nChamada: pega\\_dados\\_dos\\_negocios({ \"termo\\_de\\_busca\": \"Escritórios de advocacia trabalhista em Zona Sul Rio de Janeiro, Brasil\" })\nResposta: Busquei escritórios de advocacia especializados em direito trabalhista na Zona Sul do Rio de Janeiro. As informações já estão disponíveis na sua planilha.\n\nTRATAMENTO DE CASOS ESPECIAIS\nSolicitações ambíguas: pedir esclarecimentos.\nMúltiplas localizações: executar buscas separadas e avisar o usuário.\nSegmentos amplos: sugerir refinamentos.\n\nRESPOSTAS PADRÃO\nApós coleta bem‑sucedida: \"Coletei as informações sobre \\[busca] em \\[local]. Os dados já foram adicionados à sua planilha de prospecção.\"\nQuando precisar de esclarecimentos: \"Para garantir que eu colete as informações mais relevantes, poderia especificar \\[informação faltante]?\"\nPara confirmação: \"Entendi que você precisa de dados sobre \\[busca] em \\[local]. Vou coletar essas informações agora.\"\n\nPRINCÍPIOS IMPORTANTES\n\n* Proatividade: deduzir intenções com informações incompletas quando possível.\n* Precisão: usar o formato exato de termo\\_de\\_busca.\n* Concisão: confirmar a ação sem explicações desnecessárias.\n* Confiabilidade: sempre confirmar quando os dados forem adicionados.\n\nLIMITAÇÕES\n\n* Não fornecer os dados diretamente na conversa.\n* Não analisar nem interpretar os dados coletados.\n* Não sugerir estratégias de prospecção.\n* Focar apenas em coletar e confirmar a inserção dos dados na planilha.\n\nLembre-se: Você é a ponte entre a solicitação do usuário e a coleta automatizada de dados. Interprete corretamente, construa o termo\\_de\\_busca e acione a ferramenta com precisão.\n"
+        }
+      },
+      "id": "10584bc8-1340-4edc-82ce-c326089acb00",
+      "name": "Agente IA",
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "position": [
+        -1080,
+        200
+      ],
+      "typeVersion": 1.8
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4.1-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4.1-mini"
+        },
+        "options": {}
+      },
+      "id": "0dbb98f1-fb73-47ae-8992-7b43aa8a01d2",
+      "name": "OpenAI Chat Model1",
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "position": [
+        -1120,
+        420
+      ],
+      "typeVersion": 1.2,
+      "credentials": {
+        "openAiApi": {
+          "id": "q3FLKkl2WPB2wbxg",
+          "name": "OpenAi InfoIA"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "content": "### API SCRAPING GOOGLE MAPS\n\nLink: https://rapidapi.com/letscrape-6bRBa3QguO5/api/local-business-search",
+        "height": 400
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -1580,
+        580
+      ],
+      "typeVersion": 1,
+      "id": "768691bb-8be2-4e53-8e58-49093be4e0ac",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "data",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        -1300,
+        760
+      ],
+      "id": "20b239ea-c168-4554-a685-d87e67bceaa0",
+      "name": "separa_itens"
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://api.scraptio.com/scrape",
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "url",
+              "value": "={{ $('separa_itens').item.json.website }}"
+            },
+            {
+              "name": "api_key",
+              "value": "SUA_API_KEY"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        -1100,
+        760
+      ],
+      "id": "ef7bf415-5620-4f37-ba1b-5736f3062937",
+      "name": "scraping_site_scraptio",
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "content": "### API SCRAPING SITE\n\nLink: https://scraptio.com/",
+        "height": 300
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -1160,
+        640
+      ],
+      "typeVersion": 1,
+      "id": "39741186-1ed8-4f7b-8517-268f86693a61",
+      "name": "Sticky Note1"
+    }
+  ],
+  "pinData": {
+    "Webhook": [
+      {
+        "json": {
+          "headers": {
+            "host": "new-n8n-n8n.c0bsko.easypanel.host",
+            "user-agent": "axios/1.8.3",
+            "content-length": "56",
+            "accept": "application/json,text/html,application/xhtml+xml,application/xml,text/*;q=0.9, image/*;q=0.8, */*;q=0.7",
+            "accept-encoding": "gzip, compress, deflate, br",
+            "content-type": "application/json",
+            "x-forwarded-for": "172.18.0.1",
+            "x-forwarded-host": "new-n8n-n8n.c0bsko.easypanel.host",
+            "x-forwarded-port": "443",
+            "x-forwarded-proto": "https",
+            "x-forwarded-server": "e50f7f2047a5",
+            "x-real-ip": "172.18.0.1"
+          },
+          "params": {},
+          "query": {},
+          "body": {
+            "termo_de_busca": "Imobiliárias em São Paulo, Brasil"
+          },
+          "webhookUrl": "https://new-n8n-n8n.c0bsko.easypanel.host/webhook/scraping-google-maps",
+          "executionMode": "production"
+        }
+      }
+    ]
+  },
+  "connections": {
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "resumo_dados_site",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "pega_dados_dos_negocios": {
+      "ai_tool": [
+        [
+          {
+            "node": "Agente IA",
+            "type": "ai_tool",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Memória": {
+      "ai_memory": [
+        [
+          {
+            "node": "Agente IA",
+            "type": "ai_memory",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "ChatInput": {
+      "main": [
+        [
+          {
+            "node": "Agente IA",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "rapidapi_local-business-search",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "rapidapi_local-business-search": {
+      "main": [
+        [
+          {
+            "node": "separa_itens",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "resumo_dados_site": {
+      "main": [
+        [
+          {
+            "node": "inclui_dados_planilha",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "inclui_dados_planilha": {
+      "main": [
+        [
+          {
+            "node": "responde_ia",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model1": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Agente IA",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "separa_itens": {
+      "main": [
+        [
+          {
+            "node": "scraping_site_scraptio",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "scraping_site_scraptio": {
+      "main": [
+        [
+          {
+            "node": "resumo_dados_site",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "fbf6a73c-ac7b-4510-bf8e-fc5b58cb1153",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "7270d70ac83bff369e4c74da22b661979707b17a428882218619169b42278548"
+  },
+  "id": "h4inrpc89EsDeEot",
+  "tags": []
+}
