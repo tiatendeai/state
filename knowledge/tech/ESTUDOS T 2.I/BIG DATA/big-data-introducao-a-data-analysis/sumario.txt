@@ -1,0 +1,42 @@
+Big Data: Uma introdução a data analysis na prática
+
+
+1	1. Análise de Vendas
+1.1	Vídeo 1.1
+1.2	Vídeo 1.2
+1.3	Vídeo 1.3
+
+2	2. Corrigindo por dias úteis.
+2.1	Vídeo 2.1
+2.2	Vídeo 2.2
+
+3	3. CSV e importações.
+3.1	Vídeo 3.1
+
+4	4. Limpando os missings
+4.1	Vídeo 4.1
+4.2	Vídeo 4.2
+4.3	Vídeo 4.3
+
+5	5. Fatores de sazonalidade
+5.1	Vídeo 5.1
+5.2	Vídeo 5.2
+5.3	Vídeo 5.3
+5.4	Vídeo 5.4
+5.5	Vídeo 5.5
+
+6	6. Medidas
+6.1	Vídeo 6.1
+6.2	Vídeo 6.2
+6.3	Vídeo 6.3
+6.4	Vídeo 6.4
+
+7	7. Média Geométrica
+7.1	Vídeo 7.1
+7.2	Vídeo 7.2
+
+8	8. Churm Rate
+8.1	Vídeo 8.1
+8.2	Vídeo 8.2
+8.3	Vídeo 8.3
+8.4	Vídeo 8.4
