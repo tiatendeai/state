@@ -1,0 +1,3352 @@
+{
+  "name": "Instagram - Fluxo de mensagens",
+  "nodes": [
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "99cc5921-3d1f-4b6f-9ee6-ed070f585f40",
+              "name": "tokenVerificacao",
+              "value": "COLOQUE_UMA_PALAVRA",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "ea0847bb-7c2c-49d4-91a2-5fc7f4acec8e",
+      "name": "Set Token Verificacao",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        140,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "306c3c67-6a03-43b7-904b-bd5b6d92c523",
+              "leftValue": "={{ $json.tokenVerificacao }}",
+              "rightValue": "={{ $('Webhook Assinatura').item.json.query['hub.verify_token'] }}",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "34261b13-040a-4df9-ac1a-9da24ecffc33",
+      "name": "If",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        360,
+        480
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "=",
+        "options": {
+          "responseCode": 401
+        }
+      },
+      "id": "58fe50c6-8f3f-4dda-8bf3-9af7c98a31bf",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        560,
+        620
+      ]
+    },
+    {
+      "parameters": {
+        "respondWith": "text",
+        "responseBody": "={{ $('Webhook Assinatura').item.json.query['hub.challenge'] }}",
+        "options": {}
+      },
+      "id": "3fdead93-5f52-44ab-a719-92098ccc0cda",
+      "name": "Respond to Webhook1",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [
+        560,
+        360
+      ]
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "body.entry",
+        "options": {}
+      },
+      "id": "a33455bb-75a2-420a-9e79-2f5ae62289d3",
+      "name": "Split Out",
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        120,
+        1060
+      ]
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "changes, messaging",
+        "options": {}
+      },
+      "id": "7ea6c0bc-80ef-4970-b49a-d8559468b5ea",
+      "name": "Split Out1",
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        360,
+        1060
+      ]
+    },
+    {
+      "parameters": {
+        "queue": "instagram-events",
+        "options": {
+          "arguments": {
+            "argument": [
+              {
+                "key": "x-queue-type",
+                "value": "quorum"
+              }
+            ]
+          },
+          "durable": true
+        }
+      },
+      "id": "4e84ed9e-64f8-46b9-99cc-4ceb8e9bfd09",
+      "name": "RabbitMQ",
+      "type": "n8n-nodes-base.rabbitmq",
+      "typeVersion": 1.1,
+      "position": [
+        580,
+        1060
+      ],
+      "credentials": {
+        "rabbitmq": {
+          "id": "RUl842ZYbaYbkhK9",
+          "name": "RabbitMQ account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "queue": "instagram-events",
+        "options": {
+          "arguments": {
+            "argument": [
+              {
+                "key": "x-queue-type",
+                "value": "quorum"
+              }
+            ]
+          },
+          "acknowledge": "executionFinishesSuccessfully",
+          "jsonParseBody": true,
+          "parallelMessages": 1
+        }
+      },
+      "id": "c8118a09-4cbd-4f30-afea-954c1aac2a77",
+      "name": "RabbitMQ Trigger",
+      "type": "n8n-nodes-base.rabbitmqTrigger",
+      "typeVersion": 1,
+      "position": [
+        -80,
+        1840
+      ],
+      "credentials": {
+        "rabbitmq": {
+          "id": "RUl842ZYbaYbkhK9",
+          "name": "RabbitMQ account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": "={{ $('Set Configuração').item.json.rateLimit }}"
+      },
+      "id": "07dfa7f6-c907-4ab5-9211-781e4f229b86",
+      "name": "Wait",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        1620,
+        1460
+      ],
+      "webhookId": "c11fe8c3-04dc-4d43-ae2c-fcf26d43da8a"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "85587e91-1763-46e9-901a-996d1121446c",
+              "leftValue": "={{$json}}",
+              "rightValue": "",
+              "operator": {
+                "type": "object",
+                "operation": "empty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "bfbfb56e-a8a7-4e9b-9bbe-eee6008c2a9b",
+      "name": "If1",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1360,
+        1620
+      ]
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "={{ $json.planilha }}",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Dashboard",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1MzpGg0I7WQA5dM5edbgX3vOCS-LiZ66uEZOQ7Y3prWg/edit#gid=0"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "Dia",
+              "lookupValue": "={{ $json.dataAtual }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "d4d85e3b-3af5-4b48-afd7-75d763b28b07",
+      "name": "Google Sheets1",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1140,
+        1620
+      ],
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "DSrQdMiqBlKQkGxy",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "={{ $('Set Configuração').item.json.planilha }}",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Dashboard",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1MzpGg0I7WQA5dM5edbgX3vOCS-LiZ66uEZOQ7Y3prWg/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Dia": "={{ $('Set Configuração').item.json.dataAtual }}",
+            "Comentários": "0",
+            "Respostas ao story": "0",
+            "DMs": "0",
+            "Menções no comentário": "0"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Dia",
+              "displayName": "Dia",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Comentários",
+              "displayName": "Comentários",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Respostas ao story",
+              "displayName": "Respostas ao story",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "DMs",
+              "displayName": "DMs",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "Menções no comentário",
+              "displayName": "Menções no comentário",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "71cb39be-42c2-4505-b304-ff87f6620056",
+      "name": "Google Sheets2",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        1820,
+        1460
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "DSrQdMiqBlKQkGxy",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": "={{ $('Set Configuração').item.json.rateLimit }}"
+      },
+      "id": "f054ef53-1af3-41cc-9ec9-fa3e335d3d68",
+      "name": "Wait1",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        2020,
+        1460
+      ],
+      "webhookId": "c11fe8c3-04dc-4d43-ae2c-fcf26d43da8a"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "={{ $('Set Configuração').item.json.planilha }}",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Dashboard",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1MzpGg0I7WQA5dM5edbgX3vOCS-LiZ66uEZOQ7Y3prWg/edit#gid=0"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "Dia",
+              "lookupValue": "={{ $('Set Configuração').item.json.dataAtual }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "d08e8295-4254-43e4-a399-fa92049b4410",
+      "name": "Google Sheets3",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        2220,
+        1460
+      ],
+      "alwaysOutputData": false,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "DSrQdMiqBlKQkGxy",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "2d72bb7f-f3e4-477b-b004-8acb1836071f",
+              "name": "userId",
+              "value": "SEU_USERID",
+              "type": "string"
+            },
+            {
+              "id": "31113dbb-f68e-4356-9ea0-20ca4dde1bdd",
+              "name": "planilha",
+              "value": "LINK_DA_SUA_PLANILHA",
+              "type": "string"
+            },
+            {
+              "id": "62ca87b6-f2cc-4465-b625-2ade75e2c921",
+              "name": "rateLimit",
+              "value": 2,
+              "type": "number"
+            },
+            {
+              "id": "6ed4b06f-a313-4961-a713-91f5d6e957dc",
+              "name": "dataAtual",
+              "value": "={{ new Date().toLocaleDateString('pt-BR') }}",
+              "type": "string"
+            },
+            {
+              "id": "aaaacace-734f-47ac-ab73-ae0aaad5ef46",
+              "name": "username",
+              "value": "SEU_USERNAME",
+              "type": "string"
+            },
+            {
+              "id": "cf1cbebf-44dd-42b4-9cf5-06a8134469dd",
+              "name": "tamanhoHistorico",
+              "value": 7,
+              "type": "number"
+            },
+            {
+              "id": "29e8d21a-04c6-44fd-9da6-13b624d10a97",
+              "name": "metaUrl",
+              "value": "https://graph.instagram.com/v22.0",
+              "type": "string"
+            },
+            {
+              "id": "a020f8f6-56f3-4972-b37b-255432630371",
+              "name": "token",
+              "value": "SEU_TOKEN_INSTAGRAM",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "e6144c03-aea1-42ff-8f55-592a120e4a23",
+      "name": "Set Configuração",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        380,
+        1720
+      ]
+    },
+    {
+      "parameters": {
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "id": "1788ce6a-bcf0-4913-bdef-ca84f6a16793",
+      "name": "Get Dashboard",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2420,
+        1620
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "9e1e7a8b-2fc6-43d6-a032-a18f015a590c",
+              "leftValue": "={{ $json.userId }}",
+              "rightValue": "={{ $('RabbitMQ Trigger').item.json.content.messaging.sender.id }}",
+              "operator": {
+                "type": "string",
+                "operation": "notEquals"
+              }
+            },
+            {
+              "id": "9133c67e-2a93-44ad-ae9e-86ec8430a6bb",
+              "leftValue": "={{ $json.userId }}",
+              "rightValue": "={{ $('RabbitMQ Trigger').item.json.content.changes.value.from.id }}",
+              "operator": {
+                "type": "string",
+                "operation": "notEquals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "3c50e0f5-eac8-4beb-868e-35e25451bd39",
+      "name": "If2",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        860,
+        1720
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "08c72dbb-b4cf-42be-8c1d-1e449ddaf114",
+      "name": "No Operation, do nothing",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        1140,
+        1840
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "34d82748-037d-4342-a673-fbc486cbd1db",
+              "name": "row_number",
+              "value": "={{ $json.row_number }}",
+              "type": "number"
+            },
+            {
+              "id": "a1e8e16d-42b4-4197-979d-cfa3bf9234f3",
+              "name": "Dia",
+              "value": "={{ $json.Dia }}",
+              "type": "string"
+            },
+            {
+              "id": "b81c12f6-6c55-482e-a4b9-206aa7110803",
+              "name": "Comentários",
+              "value": "={{ $json['Comentários'] }}",
+              "type": "number"
+            },
+            {
+              "id": "4c00426f-e4fe-4755-be6c-d06baa60dbed",
+              "name": "Respostas ao story",
+              "value": "={{ $json['Respostas ao story'] }}",
+              "type": "number"
+            },
+            {
+              "id": "63b137eb-446c-488a-a928-9053a617d803",
+              "name": "DMs",
+              "value": "={{ $json.DMs + 1 }}",
+              "type": "number"
+            },
+            {
+              "id": "47714d93-802c-4410-820e-e9e7e7d525b0",
+              "name": "Menções no comentário",
+              "value": "={{ $json['Menções no comentário'] }}",
+              "type": "number"
+            },
+            {
+              "id": "d45cecc4-94c0-406f-b7aa-f0df96bd7b7e",
+              "name": "Gatilho",
+              "value": "Mensagem no Instagram",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "95c603c5-9bad-48a3-82e7-c267d164dc25",
+      "name": "Edit Fields",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        3200,
+        1480
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "34d82748-037d-4342-a673-fbc486cbd1db",
+              "name": "row_number",
+              "value": "={{ $json.row_number }}",
+              "type": "number"
+            },
+            {
+              "id": "a1e8e16d-42b4-4197-979d-cfa3bf9234f3",
+              "name": "Dia",
+              "value": "={{ $json.Dia }}",
+              "type": "string"
+            },
+            {
+              "id": "b81c12f6-6c55-482e-a4b9-206aa7110803",
+              "name": "Comentários",
+              "value": "={{ $json['Comentários'] + 1 }}",
+              "type": "number"
+            },
+            {
+              "id": "4c00426f-e4fe-4755-be6c-d06baa60dbed",
+              "name": "Respostas ao story",
+              "value": "={{ $json['Respostas ao story'] }}",
+              "type": "number"
+            },
+            {
+              "id": "63b137eb-446c-488a-a928-9053a617d803",
+              "name": "DMs",
+              "value": "={{ $json.DMs }}",
+              "type": "number"
+            },
+            {
+              "id": "47714d93-802c-4410-820e-e9e7e7d525b0",
+              "name": "Menções no comentário",
+              "value": "={{ $json['Menções no comentário'] }}",
+              "type": "number"
+            },
+            {
+              "id": "b4684264-757c-410b-9558-6b116b274997",
+              "name": "Gatilho",
+              "value": "Comentários na publicação ou Reels",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "42b297f3-f240-469f-a310-15ad735acf3a",
+      "name": "Edit Fields1",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        3200,
+        1680
+      ]
+    },
+    {
+      "parameters": {
+        "amount": "={{ $('Set Configuração').item.json.rateLimit }}"
+      },
+      "id": "b4137418-8202-49d1-8eac-01fb2f3130fc",
+      "name": "Wait2",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        3720,
+        1500
+      ],
+      "webhookId": "c11fe8c3-04dc-4d43-ae2c-fcf26d43da8a"
+    },
+    {
+      "parameters": {
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "id": "704ac067-bacf-4487-aee7-381cad37f9d4",
+      "name": "Update Dashboard",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        3500,
+        1500
+      ]
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "documentId": {
+          "__rl": true,
+          "value": "={{ $('Set Configuração').item.json.planilha }}",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Dashboard",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1MzpGg0I7WQA5dM5edbgX3vOCS-LiZ66uEZOQ7Y3prWg/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "row_number": "={{ $json.row_number }}",
+            "Dia": "={{ $json.Dia }}",
+            "Comentários": "={{ $json['Comentários'] }}",
+            "Respostas ao story": "={{ $json['Respostas ao story'] }}",
+            "DMs": "={{ $json.DMs }}",
+            "Menções no comentário": "={{ $json['Menções no comentário'] }}"
+          },
+          "matchingColumns": [
+            "row_number"
+          ],
+          "schema": [
+            {
+              "id": "Dia",
+              "displayName": "Dia",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Comentários",
+              "displayName": "Comentários",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Respostas ao story",
+              "displayName": "Respostas ao story",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "DMs",
+              "displayName": "DMs",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "Menções no comentário",
+              "displayName": "Menções no comentário",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "row_number",
+              "displayName": "row_number",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "readOnly": true,
+              "removed": false
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "3f2f6a8e-778d-4437-a309-6e263e7a886e",
+      "name": "Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        3920,
+        1500
+      ],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "DSrQdMiqBlKQkGxy",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $('RabbitMQ Trigger').item.json.content.messaging.message.reply_to.story }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "object",
+                      "operation": "notEmpty",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "reply_story"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "0c64de2b-8ade-4333-92ca-bc380ea3c3f3",
+                    "leftValue": "={{ $('RabbitMQ Trigger').item.json.content.messaging.message.reply_to }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "object",
+                      "operation": "empty",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "dm"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "59a8d29b-99d2-4f28-8118-ea3bb8920f06",
+                    "leftValue": "={{ $('RabbitMQ Trigger').item.json.content.messaging.message.reply_to.mid }}",
+                    "rightValue": "",
+                    "operator": {
+                      "type": "string",
+                      "operation": "notEmpty",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "reply_message"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "8315016c-4760-47ab-97a2-de0f7e97c15d",
+      "name": "Switch1",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        2860,
+        1440
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "34d82748-037d-4342-a673-fbc486cbd1db",
+              "name": "row_number",
+              "value": "={{ $json.row_number }}",
+              "type": "number"
+            },
+            {
+              "id": "a1e8e16d-42b4-4197-979d-cfa3bf9234f3",
+              "name": "Dia",
+              "value": "={{ $json.Dia }}",
+              "type": "string"
+            },
+            {
+              "id": "b81c12f6-6c55-482e-a4b9-206aa7110803",
+              "name": "Comentários",
+              "value": "={{ $json['Comentários'] }}",
+              "type": "number"
+            },
+            {
+              "id": "4c00426f-e4fe-4755-be6c-d06baa60dbed",
+              "name": "Respostas ao story",
+              "value": "={{ $json['Respostas ao story'] + 1 }}",
+              "type": "number"
+            },
+            {
+              "id": "63b137eb-446c-488a-a928-9053a617d803",
+              "name": "DMs",
+              "value": "={{ $json.DMs }}",
+              "type": "number"
+            },
+            {
+              "id": "47714d93-802c-4410-820e-e9e7e7d525b0",
+              "name": "Menções no comentário",
+              "value": "={{ $json['Menções no comentário'] }}",
+              "type": "number"
+            },
+            {
+              "id": "a64c04cd-a2a2-4c71-89e9-16fe3576f570",
+              "name": "Gatilho",
+              "value": "Resposta ao story",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "05ccd147-c061-4128-b4ce-2f9564c14ed3",
+      "name": "Edit Fields2",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        3200,
+        1300
+      ]
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $('RabbitMQ Trigger').item.json.content.messaging }}",
+                    "rightValue": "comments",
+                    "operator": {
+                      "type": "object",
+                      "operation": "notEmpty",
+                      "singleValue": true
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "messages"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "6c7e87dc-37dc-41eb-9c50-d148abea799f",
+                    "leftValue": "={{ $('RabbitMQ Trigger').item.json.content.changes.field }}",
+                    "rightValue": "comments",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "comments"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "9e623bb2-1f51-4305-8a4f-ebc825449583",
+      "name": "Switch",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        2640,
+        1620
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "1986120a-179f-47c4-b411-fe9651ea5c97",
+              "leftValue": "={{ $('RabbitMQ Trigger').item.json.content.changes.value.text }}",
+              "rightValue": "={{ $('Set Configuração').item.json.username }}",
+              "operator": {
+                "type": "string",
+                "operation": "notContains"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "56908a95-c27b-4511-98e9-6e771cd9fc27",
+      "name": "If3",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        2880,
+        1720
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "34d82748-037d-4342-a673-fbc486cbd1db",
+              "name": "row_number",
+              "value": "={{ $json.row_number }}",
+              "type": "number"
+            },
+            {
+              "id": "a1e8e16d-42b4-4197-979d-cfa3bf9234f3",
+              "name": "Dia",
+              "value": "={{ $json.Dia }}",
+              "type": "string"
+            },
+            {
+              "id": "b81c12f6-6c55-482e-a4b9-206aa7110803",
+              "name": "Comentários",
+              "value": "={{ $json['Comentários'] }}",
+              "type": "number"
+            },
+            {
+              "id": "4c00426f-e4fe-4755-be6c-d06baa60dbed",
+              "name": "Respostas ao story",
+              "value": "={{ $json['Respostas ao story'] }}",
+              "type": "number"
+            },
+            {
+              "id": "63b137eb-446c-488a-a928-9053a617d803",
+              "name": "DMs",
+              "value": "={{ $json.DMs }}",
+              "type": "number"
+            },
+            {
+              "id": "47714d93-802c-4410-820e-e9e7e7d525b0",
+              "name": "Menções no comentário",
+              "value": "={{ $json['Menções no comentário'] + 1 }}",
+              "type": "number"
+            },
+            {
+              "id": "1abbd658-57c0-4032-bc4c-fb03692253f3",
+              "name": "Gatilho",
+              "value": "Menção nos comentários",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "3d1973ed-ed25-41e6-8e48-49e7cf0a13ed",
+      "name": "Edit Fields3",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        3200,
+        1860
+      ]
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "={{ $('Set Configuração').item.json.planilha }}",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Dashboard",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1MzpGg0I7WQA5dM5edbgX3vOCS-LiZ66uEZOQ7Y3prWg/edit#gid=0"
+        },
+        "options": {}
+      },
+      "id": "012ec35f-f928-401a-b3c8-f8c955237ae8",
+      "name": "Google Sheets4",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        4320,
+        1500
+      ],
+      "alwaysOutputData": false,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "DSrQdMiqBlKQkGxy",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fieldsToSummarize": {
+          "values": [
+            {
+              "field": "Dia"
+            },
+            {
+              "aggregation": "min",
+              "field": "row_number"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "9983adcd-a566-416c-bd7f-8a179dc94fbe",
+      "name": "Summarize",
+      "type": "n8n-nodes-base.summarize",
+      "typeVersion": 1,
+      "position": [
+        4540,
+        1500
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "eb15faa9-cf85-4bd1-9d69-2627696ec8fc",
+              "leftValue": "={{ $json.count_Dia }}",
+              "rightValue": "={{ $('Set Configuração').item.json.tamanhoHistorico }}",
+              "operator": {
+                "type": "number",
+                "operation": "gt"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "55881383-cc96-4b6d-96cc-49b314678abc",
+      "name": "If4",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        4760,
+        1500
+      ]
+    },
+    {
+      "parameters": {
+        "amount": "={{ $('Set Configuração').item.json.rateLimit }}"
+      },
+      "id": "2140d297-02a7-4db6-af30-b6408614dd81",
+      "name": "Wait3",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        4120,
+        1500
+      ],
+      "webhookId": "c11fe8c3-04dc-4d43-ae2c-fcf26d43da8a"
+    },
+    {
+      "parameters": {
+        "amount": "={{ $('Set Configuração').item.json.rateLimit }}"
+      },
+      "id": "9b9e1176-a4ef-4137-8f46-e5de7e49afc4",
+      "name": "Wait4",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        4980,
+        1380
+      ],
+      "webhookId": "c11fe8c3-04dc-4d43-ae2c-fcf26d43da8a"
+    },
+    {
+      "parameters": {
+        "operation": "delete",
+        "documentId": {
+          "__rl": true,
+          "value": "={{ $('Set Configuração').item.json.planilha }}",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Dashboard",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1MzpGg0I7WQA5dM5edbgX3vOCS-LiZ66uEZOQ7Y3prWg/edit#gid=0"
+        },
+        "startIndex": "={{ $('Summarize').item.json.min_row_number }}",
+        "numberToDelete": "={{ $('Summarize').item.json.count_Dia - $('Set Configuração').item.json.tamanhoHistorico }}"
+      },
+      "id": "aa77de52-113b-4c0b-b1b7-1d978c2e776e",
+      "name": "Google Sheets6",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        5180,
+        1380
+      ],
+      "alwaysOutputData": false,
+      "executeOnce": false,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "DSrQdMiqBlKQkGxy",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "queue": "instagram-automation",
+        "options": {
+          "arguments": {
+            "argument": [
+              {
+                "key": "x-queue-type",
+                "value": "quorum"
+              }
+            ]
+          },
+          "durable": true
+        }
+      },
+      "id": "0b3740bf-85db-4efa-a1ef-a23fb9962d79",
+      "name": "RabbitMQ1",
+      "type": "n8n-nodes-base.rabbitmq",
+      "typeVersion": 1.1,
+      "position": [
+        5620,
+        1520
+      ],
+      "credentials": {
+        "rabbitmq": {
+          "id": "RUl842ZYbaYbkhK9",
+          "name": "RabbitMQ account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "eaf2a52e-09d9-436d-8ae3-ce5f2af95909",
+              "name": "event",
+              "value": "={{ $('Update Dashboard').item.json.Gatilho }}",
+              "type": "string"
+            },
+            {
+              "id": "b65e66bd-a3da-40fe-9c5d-89483bf24b34",
+              "name": "body",
+              "value": "={{ $('RabbitMQ Trigger').item.json.content }}",
+              "type": "object"
+            },
+            {
+              "id": "6ecaa521-3d3b-4452-bc1b-4045d0c01a68",
+              "name": "userId",
+              "value": "={{ $('Set Configuração').item.json.userId }}",
+              "type": "string"
+            },
+            {
+              "id": "5e95b15f-5afc-4366-a069-69f469993996",
+              "name": "planilha",
+              "value": "={{ $('Set Configuração').item.json.planilha }}",
+              "type": "string"
+            },
+            {
+              "id": "739364e0-b57b-4e32-898d-c977dd62ce8e",
+              "name": "rateLimit",
+              "value": "={{ $('Set Configuração').item.json.rateLimit }}",
+              "type": "number"
+            },
+            {
+              "id": "b0bd9759-4e08-40ec-8d4c-09570de4ccf8",
+              "name": "username",
+              "value": "={{ $('Set Configuração').item.json.username }}",
+              "type": "string"
+            },
+            {
+              "id": "1afb6bb0-2eaf-4c43-9e2c-16460f49014b",
+              "name": "metaUrl",
+              "value": "={{ $('Set Configuração').item.json.metaUrl }}",
+              "type": "string"
+            },
+            {
+              "id": "097a6733-a7af-4bd2-8ab4-c9f2a7a1ca65",
+              "name": "token",
+              "value": "={{ $('Set Configuração').item.json.token }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "0765627d-1368-48b9-9a82-b655c5db57d1",
+      "name": "Edit Fields4",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        5400,
+        1520
+      ]
+    },
+    {
+      "parameters": {
+        "queue": "instagram-automation",
+        "options": {
+          "arguments": {
+            "argument": [
+              {
+                "key": "x-queue-type",
+                "value": "quorum"
+              }
+            ]
+          },
+          "acknowledge": "executionFinishesSuccessfully",
+          "jsonParseBody": true,
+          "parallelMessages": 1
+        }
+      },
+      "id": "691cbac5-365b-4674-a4e6-d6d5efe675aa",
+      "name": "RabbitMQ Trigger1",
+      "type": "n8n-nodes-base.rabbitmqTrigger",
+      "typeVersion": 1,
+      "position": [
+        -60,
+        3260
+      ],
+      "credentials": {
+        "rabbitmq": {
+          "id": "RUl842ZYbaYbkhK9",
+          "name": "RabbitMQ account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "31113dbb-f68e-4356-9ea0-20ca4dde1bdd",
+              "name": "planilha",
+              "value": "={{ $json.content.planilha }}",
+              "type": "string"
+            },
+            {
+              "id": "62ca87b6-f2cc-4465-b625-2ade75e2c921",
+              "name": "rateLimit",
+              "value": "={{ $json.content.rateLimit }}",
+              "type": "number"
+            },
+            {
+              "id": "56cb225d-2eb5-4938-83f3-1dd0e856005f",
+              "name": "metaUrl",
+              "value": "={{ $json.content.metaUrl }}",
+              "type": "string"
+            },
+            {
+              "id": "331668d8-a33b-41fa-8b61-3501f46cb807",
+              "name": "token",
+              "value": "={{ $json.content.token }}",
+              "type": "string"
+            },
+            {
+              "id": "8bffb791-6ae4-4a25-a607-22ed1bc5991c",
+              "name": "userId",
+              "value": "={{ $json.content.userId }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "ce63742c-76bf-4fcf-a69c-02cefacc6960",
+      "name": "Set Automação",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        400,
+        3140
+      ]
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "={{ $json.planilha }}",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1277039963,
+          "mode": "list",
+          "cachedResultName": "Automações",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1MzpGg0I7WQA5dM5edbgX3vOCS-LiZ66uEZOQ7Y3prWg/edit#gid=1277039963"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "Gatilho",
+              "lookupValue": "={{ $('RabbitMQ Trigger1').item.json.content.event }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "b998bfe2-5557-4f73-9b03-e12232f6abb6",
+      "name": "Google Sheets5",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        800,
+        3140
+      ],
+      "alwaysOutputData": false,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "DSrQdMiqBlKQkGxy",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "28041e79-062e-4ca0-8021-8382bce93efb",
+              "leftValue": "={{ $json.Post }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "empty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "48d61c77-dcc8-4305-af3d-3c443b4f4df5",
+      "name": "If5",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1020,
+        3140
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "31028cf4-1c2b-4a18-8599-096a563251fd",
+              "leftValue": "={{ $json['Palavras-chave'] }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "empty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "337031b3-61ef-4b28-88c0-08a210f8fbfa",
+      "name": "If6",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1460,
+        3020
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "f0b567ce-0875-450a-aef2-7b6142ccf77b",
+              "leftValue": "={{ $json.Post }}",
+              "rightValue": "={{ $('RabbitMQ Trigger1').item.json.content.body.changes.value.media.id }}",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            },
+            {
+              "id": "89f0300e-5129-4efa-8e30-9f039ce85721",
+              "leftValue": "={{ $json.Post }}",
+              "rightValue": "={{ $('RabbitMQ Trigger1').item.json.content.body.messaging.message.reply_to.story.id }}",
+              "operator": {
+                "type": "string",
+                "operation": "equals",
+                "name": "filter.operator.equals"
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "id": "7e849066-1914-484d-b583-572e67a544c5",
+      "name": "If7",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1260,
+        3200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "9b77cd91-a9bf-4286-9416-e317c6d51986",
+      "name": "No Operation, do nothing1",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        1480,
+        3340
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "594cab19-30c0-4106-92a0-34c00b58c745",
+              "leftValue": "={{ $json['Palavras-chave'].split(',').some(palavra => new RegExp(`\\\\b${palavra}\\\\b`, 'i').test($('RabbitMQ Trigger1').item.json.content.body.changes.value.text)) }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "6e2d4591-9e86-42af-86c5-c8cb46c80330",
+              "leftValue": "={{ $json['Palavras-chave'].split(',').some(palavra => new RegExp(`\\\\b${palavra}\\\\b`, 'i').test($('RabbitMQ Trigger1').item.json.content.body.messaging.message.text)) }}",
+              "rightValue": "",
+              "operator": {
+                "type": "boolean",
+                "operation": "true",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "id": "e1e8abca-6903-4953-b856-6aae9116e4cb",
+      "name": "If8",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        1680,
+        3200
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "b0d21b2f-8f3d-4d0e-a2e5-b33b64b45122",
+      "name": "No Operation, do nothing2",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        1880,
+        3320
+      ]
+    },
+    {
+      "parameters": {
+        "includeOtherFields": true,
+        "options": {}
+      },
+      "id": "b4cc2ac3-e868-48ce-8c90-f9c3bfbe3c94",
+      "name": "Set Gatilho",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        1880,
+        2980
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $('Set Automação').item.json.metaUrl }}/{{ $('Group Fluxo').item.json.commentId }}/replies",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $('Set Automação').item.json.token }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "message",
+              "value": "={{ $json.Valor.replace(\"{0}\", '@'+$('Group Fluxo').item.json.username) }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "acecf075-77e3-4d66-8085-525e39cedd4f",
+      "name": "Reply Comment",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        5040,
+        2480
+      ]
+    },
+    {
+      "parameters": {
+        "amount": "={{ $json.rateLimit }}"
+      },
+      "id": "b918ca5a-71fe-4507-8424-2a66bf9d6a8a",
+      "name": "Wait5",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        600,
+        3140
+      ],
+      "webhookId": "c11fe8c3-04dc-4d43-ae2c-fcf26d43da8a"
+    },
+    {
+      "parameters": {
+        "amount": "={{ $('Set Automação').item.json.rateLimit }}"
+      },
+      "id": "942b0871-2796-4a4d-9a88-f5dcf746e628",
+      "name": "Wait6",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        2080,
+        2980
+      ],
+      "webhookId": "c11fe8c3-04dc-4d43-ae2c-fcf26d43da8a"
+    },
+    {
+      "parameters": {
+        "amount": "={{ $json.rateLimit }}"
+      },
+      "id": "2d95abc7-768e-45c9-ba58-10d03f1e21f7",
+      "name": "Wait7",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        620,
+        1720
+      ],
+      "webhookId": "c11fe8c3-04dc-4d43-ae2c-fcf26d43da8a"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "f9c70831-8679-420c-8666-479807d3bd94",
+              "leftValue": "={{ $json.properties.headers['x-delivery-count'] }}",
+              "rightValue": 3,
+              "operator": {
+                "type": "number",
+                "operation": "notExists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "8c48330e-12b7-4388-86e4-8b63081e57d2",
+              "leftValue": "={{ $json.properties.headers['x-delivery-count'] }}",
+              "rightValue": 3,
+              "operator": {
+                "type": "number",
+                "operation": "lt"
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "id": "0eb5e5ac-5df2-41f5-95fe-b0c0d60b1cda",
+      "name": "If9",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        160,
+        3260
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "d01950ff-8a43-40e4-a238-04ceed784db7",
+      "name": "No Operation, do nothing3",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        400,
+        3360
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "2feb611e-0537-409e-a31f-60a4858d7447",
+      "name": "No Operation, do nothing4",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        380,
+        1940
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "f9c70831-8679-420c-8666-479807d3bd94",
+              "leftValue": "={{ $json.properties.headers['x-delivery-count'] }}",
+              "rightValue": 3,
+              "operator": {
+                "type": "number",
+                "operation": "notExists",
+                "singleValue": true
+              }
+            },
+            {
+              "id": "8c48330e-12b7-4388-86e4-8b63081e57d2",
+              "leftValue": "={{ $json.properties.headers['x-delivery-count'] }}",
+              "rightValue": 3,
+              "operator": {
+                "type": "number",
+                "operation": "lt"
+              }
+            }
+          ],
+          "combinator": "or"
+        },
+        "options": {}
+      },
+      "id": "5f283926-d155-4b68-a0c8-48ecca9d212d",
+      "name": "If10",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        140,
+        1840
+      ]
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "={{ $('Set Automação').item.json.planilha }}",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 965015094,
+          "mode": "list",
+          "cachedResultName": "Fluxos",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1MzpGg0I7WQA5dM5edbgX3vOCS-LiZ66uEZOQ7Y3prWg/edit#gid=965015094"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "Comando",
+              "lookupValue": "INICIO_FLUXO"
+            },
+            {
+              "lookupColumn": "Valor",
+              "lookupValue": "={{ $json.Fluxo }}"
+            }
+          ]
+        },
+        "options": {
+          "returnFirstMatch": true
+        }
+      },
+      "id": "859f7aaf-a233-40bf-9d0c-83419ead47c2",
+      "name": "Get Inicio Fluxo",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        2300,
+        2980
+      ],
+      "alwaysOutputData": false,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "DSrQdMiqBlKQkGxy",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "6bd03ef0-aae5-46ee-9f46-8e79ce81c074",
+              "name": "commentId",
+              "value": "={{ $('RabbitMQ Trigger1').item.json.content.body.changes.value.id }}",
+              "type": "string"
+            },
+            {
+              "id": "44122a65-b342-4c58-82fd-3927f7b17a02",
+              "name": "userId",
+              "value": "={{ $('RabbitMQ Trigger1').item.json.content.body?.changes?.value?.from?.id || $('RabbitMQ Trigger1').item.json.content.body?.messaging?.sender?.id }}",
+              "type": "string"
+            },
+            {
+              "id": "433e5436-56d7-475d-99ac-440ea3bcd9e7",
+              "name": "username",
+              "value": "={{ $('RabbitMQ Trigger1').item.json.content.body.changes.value.from.username }}",
+              "type": "string"
+            },
+            {
+              "id": "d07a93b6-46b1-4a6f-afa8-0afdfebedef6",
+              "name": "row_number",
+              "value": "={{ $json.row_number }}",
+              "type": "number"
+            },
+            {
+              "id": "dffa8ff5-d72e-40d0-851c-d9ce45b49e56",
+              "name": "fluxo",
+              "value": "[]",
+              "type": "array"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "4952beaa-f2ac-4ae2-b6d8-41b27997f1f6",
+      "name": "Set Parametro",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2520,
+        2980
+      ]
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "={{ $('Set Automação').item.json.planilha }}",
+          "mode": "url"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 965015094,
+          "mode": "list",
+          "cachedResultName": "Fluxos",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1MzpGg0I7WQA5dM5edbgX3vOCS-LiZ66uEZOQ7Y3prWg/edit#gid=965015094"
+        },
+        "filtersUI": {
+          "values": [
+            {
+              "lookupColumn": "={{ \"row_number\" }}",
+              "lookupValue": "={{ $json.row_number }}"
+            }
+          ]
+        },
+        "options": {
+          "returnFirstMatch": true
+        }
+      },
+      "id": "88043643-391f-4bce-9b8d-8732ea705461",
+      "name": "Next Step",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.5,
+      "position": [
+        3120,
+        2980
+      ],
+      "alwaysOutputData": false,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "DSrQdMiqBlKQkGxy",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "amount": "={{ $('Set Automação').item.json.rateLimit }}"
+      },
+      "id": "f6a9c4ca-8191-463c-812c-b250c6fbd0e7",
+      "name": "Wait8",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        2940,
+        2980
+      ],
+      "webhookId": "c11fe8c3-04dc-4d43-ae2c-fcf26d43da8a"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "e6775bae-ca88-4031-8d9d-38148bf217a3",
+              "leftValue": "={{ $('Group Fluxo').item.json.commentId }}",
+              "rightValue": "",
+              "operator": {
+                "type": "string",
+                "operation": "notEmpty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "39c28be0-0dd4-485f-8629-47951901224e",
+      "name": "If11",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        4780,
+        2600
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "5c0578b9-9d18-4608-86b6-6f424a23c5ad",
+              "name": "commentId",
+              "value": "={{ $json.commentId }}",
+              "type": "string"
+            },
+            {
+              "id": "ae65c11b-e6df-429b-ba92-28243c5783d2",
+              "name": "userId",
+              "value": "={{ $json.userId }}",
+              "type": "string"
+            },
+            {
+              "id": "4d339cf9-15cc-4e5a-80ec-a0f5c018ece1",
+              "name": "username",
+              "value": "={{ $json.username }}",
+              "type": "string"
+            },
+            {
+              "id": "898922f1-126d-461b-a0c0-618cba03f5bc",
+              "name": "row_number",
+              "value": "={{ $json.row_number + 1 }}",
+              "type": "number"
+            },
+            {
+              "id": "2f7b4972-71c5-4c2d-a6c1-732c444dd68f",
+              "name": "fluxo",
+              "value": "={{ $json.fluxo }}",
+              "type": "array"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "f8d63e8a-e377-4f92-b03a-d508a1ba544e",
+      "name": "Next Parametro",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        2740,
+        2980
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "e8535482-c588-4afd-b3c3-c5874d1bc41f",
+              "name": "commentId",
+              "value": "={{ $('Next Parametro').item.json.commentId }}",
+              "type": "string"
+            },
+            {
+              "id": "afeba622-dbad-4110-84df-b8b5b354935a",
+              "name": "userId",
+              "value": "={{ $('Next Parametro').item.json.userId }}",
+              "type": "string"
+            },
+            {
+              "id": "1154a71c-a349-496b-b1a1-f2a41134b74c",
+              "name": "username",
+              "value": "={{ $('Next Parametro').item.json.username }}",
+              "type": "string"
+            },
+            {
+              "id": "04872510-f30e-43cb-a70d-00fb9574f3ef",
+              "name": "row_number",
+              "value": "={{ $('Next Parametro').item.json.row_number }}",
+              "type": "number"
+            },
+            {
+              "id": "bf447463-39b9-4302-8328-05f03019795f",
+              "name": "fluxo",
+              "value": "={{ [...$('Next Parametro').item.json.fluxo, $('Map Step').item.json.step]  }}",
+              "type": "array"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "65ceab19-c76a-434e-a8d8-08557e7e044a",
+      "name": "Current Parametro",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        3800,
+        3080
+      ]
+    },
+    {
+      "parameters": {
+        "amount": "={{ $json.Valor }}"
+      },
+      "id": "01c08de4-52e9-4ac5-b5ce-b523083e16ce",
+      "name": "Wait9",
+      "type": "n8n-nodes-base.wait",
+      "typeVersion": 1.1,
+      "position": [
+        4780,
+        2820
+      ],
+      "webhookId": "512688d8-0766-4af6-bc6a-fb42b43366f5"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "2d6fef93-f13b-41d5-8c63-d0241c6f71da",
+              "name": "step.row_numer",
+              "value": "={{ $json.row_number }}",
+              "type": "number"
+            },
+            {
+              "id": "462d67f9-912e-4fe9-b3ef-d3a491a60787",
+              "name": "step.Comando",
+              "value": "={{ $json.Comando }}",
+              "type": "string"
+            },
+            {
+              "id": "3123b1ea-4a51-4462-8658-c5d20a5b6c4d",
+              "name": "step.Valor",
+              "value": "={{ $json.Valor }}",
+              "type": "string"
+            },
+            {
+              "id": "93c77edf-ddcb-4e7c-81fa-9cd4dedc3f83",
+              "name": "step.Ação",
+              "value": "={{ $json['Ação'] }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "f6265496-0363-4e62-a14d-d893d557a6d5",
+      "name": "Map Step",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        3340,
+        2980
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "9b5a71d8-6bf6-4bc8-a9fc-d39d069ab5c8",
+              "leftValue": "={{ $('Next Step').item.json.Comando }}",
+              "rightValue": "FIM_FLUXO",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "efeb3724-67d1-4ca1-9437-963fbc6566cc",
+      "name": "If12",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        3560,
+        2980
+      ]
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "df7c8ca3-147f-4d49-b5db-c6d5eb08ab68",
+              "name": "commentId",
+              "value": "={{ $('Next Parametro').item.json.commentId }}",
+              "type": "string"
+            },
+            {
+              "id": "37d3633e-8134-4a1c-b34b-7589d5aad012",
+              "name": "userId",
+              "value": "={{ $('Next Parametro').item.json.userId }}",
+              "type": "string"
+            },
+            {
+              "id": "17fd7d85-4f8b-42c5-9312-20ef31a11c54",
+              "name": "username",
+              "value": "={{ $('Next Parametro').item.json.username }}",
+              "type": "string"
+            },
+            {
+              "id": "4ea3caac-3308-49ab-8cdb-18accb9ae694",
+              "name": "row_number",
+              "value": "={{ $('Next Parametro').item.json.row_number }}",
+              "type": "number"
+            },
+            {
+              "id": "043753dd-b6e4-47c1-a97c-c64bc176f228",
+              "name": "fluxo",
+              "value": "={{ $('Next Parametro').item.json.fluxo }}",
+              "type": "array"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "b830f6fc-ecd2-4e4b-87df-29d72c5a6b6b",
+      "name": "Edit Fields5",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        3800,
+        2880
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "// Loop over input items and add a new field called 'myNewField' to the JSON of each one\nfunction agruparFluxo(fluxo) {\n    let resultado = [];\n    let i = 0;\n\n    while (i < fluxo.length) {\n        let item = fluxo[i];\n        \n        if (item.Comando === \"ENVIO_MENSAGEM\") {\n            let subitens = [];\n            let qtdSubitens = parseInt(item.Ação, 10) || 0;\n            \n            for (let j = 1; j <= qtdSubitens; j++) {\n                if (i + j < fluxo.length) {\n                    subitens.push(fluxo[i + j]);\n                }\n            }\n            \n            subitens = subitens.map(item => ({\n                type: item.Comando === \"BOTÃO_URL\" ? \"web_url\" : \"postback\",\n                url: item.Comando === \"BOTÃO_URL\" ? item[\"Ação\"] : undefined,\n                payload: item.Comando === \"BOTÃO_RESPONDER\" ? item[\"Ação\"] : undefined,\n                title: item.Valor\n              })).map(obj => Object.fromEntries(Object.entries(obj).filter(([_, v]) => v !== undefined)));\n\n            resultado.push({ ...item, Botões: subitens });\n            i += qtdSubitens; // Pular os subitens processados\n        } else {\n            resultado.push(item);\n        }\n        i++;\n    }\n    \n    return resultado;\n}\n\nfor (const item of $input.all()) {\n  item.json.fluxo = agruparFluxo(item.json.fluxo);\n}\n\nreturn $input.all();"
+      },
+      "id": "539c3e19-67a5-4205-a05e-1e95583e3251",
+      "name": "Group Fluxo",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        4020,
+        2880
+      ]
+    },
+    {
+      "parameters": {
+        "fieldToSplitOut": "fluxo",
+        "options": {}
+      },
+      "id": "fe18430f-c9e0-44ea-a050-e1218aa05274",
+      "name": "Split Out2",
+      "type": "n8n-nodes-base.splitOut",
+      "typeVersion": 1,
+      "position": [
+        4240,
+        2880
+      ]
+    },
+    {
+      "parameters": {},
+      "id": "d04192a9-c7e4-41bd-91cb-4fdaefb9ee5d",
+      "name": "No Operation, do nothing5",
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        5040,
+        2660
+      ]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "e6775bae-ca88-4031-8d9d-38148bf217a3",
+              "leftValue": "={{ $json['Botões'] }}",
+              "rightValue": "",
+              "operator": {
+                "type": "array",
+                "operation": "empty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "10c8201d-97a1-4287-bd94-f2f0c7785aee",
+      "name": "If13",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        4780,
+        3040
+      ]
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.Comando }}",
+                    "rightValue": "RESPONDER_COMENTÁRIO",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "RESPONDER_COMENTÁRIO"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "d1c653ca-51cb-412e-9bdb-e8ec9eec9db0",
+                    "leftValue": "={{ $json.Comando }}",
+                    "rightValue": "ESPERA",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "ESPERA"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "f7824cc9-c8bb-48d3-b5cc-074e25cea3f9",
+                    "leftValue": "={{ $json.Comando }}",
+                    "rightValue": "ENVIO_MENSAGEM",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "ENVIO_MENSAGEM"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "40fd65f6-32dc-4af3-995f-aff1c4c3a0e3",
+      "name": "Switch3",
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        4460,
+        2880
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $('Set Automação').item.json.metaUrl }}/{{ $('Set Automação').item.json.userId }}/messages",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $('Set Automação').item.json.token }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "recipient.id",
+              "value": "={{ $('Group Fluxo').item.json.userId }}"
+            },
+            {
+              "name": "message.attachment.type",
+              "value": "template"
+            },
+            {
+              "name": "message.attachment.payload.template_type",
+              "value": "button"
+            },
+            {
+              "name": "message.attachment.payload.text",
+              "value": "={{ $json.Valor }}"
+            },
+            {
+              "name": "message.attachment.payload.buttons",
+              "value": "={{ $json['Botões'] }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "b18ba7fa-a3f1-4c6e-b5bb-4ec3dd4e20e8",
+      "name": "DM Button",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        5040,
+        3140
+      ]
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ $('Set Automação').item.json.metaUrl }}/{{ $('Set Automação').item.json.userId }}/messages",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Authorization",
+              "value": "=Bearer {{ $('Set Automação').item.json.token }}"
+            }
+          ]
+        },
+        "sendBody": true,
+        "bodyParameters": {
+          "parameters": [
+            {
+              "name": "recipient.id",
+              "value": "={{ $('Group Fluxo').item.json.userId }}"
+            },
+            {
+              "name": "message.text",
+              "value": "={{ $json.Valor }}"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "id": "2a75bc13-eeba-43ce-b86b-75f4d3c77ba7",
+      "name": "DM",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        5040,
+        2940
+      ]
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "instagram/webhook",
+        "options": {}
+      },
+      "id": "6836e776-2983-412e-8574-dd85e52f34ea",
+      "name": "Webhook Eventos",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -100,
+        1060
+      ],
+      "webhookId": "85920903-63a5-41d3-8caf-91a846e72893"
+    },
+    {
+      "parameters": {
+        "path": "instagram/webhook",
+        "responseMode": "responseNode",
+        "options": {}
+      },
+      "id": "c1cad6b8-3516-4c2f-b81d-3fb5e40cef4a",
+      "name": "Webhook Assinatura",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -80,
+        480
+      ],
+      "webhookId": "85920903-63a5-41d3-8caf-91a846e72893"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Set Token Verificacao": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out": {
+      "main": [
+        [
+          {
+            "node": "Split Out1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out1": {
+      "main": [
+        [
+          {
+            "node": "RabbitMQ",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RabbitMQ Trigger": {
+      "main": [
+        [
+          {
+            "node": "If10",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Wait",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Get Dashboard",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets1": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets2": {
+      "main": [
+        [
+          {
+            "node": "Wait1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait1": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets3": {
+      "main": [
+        [
+          {
+            "node": "Get Dashboard",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Configuração": {
+      "main": [
+        [
+          {
+            "node": "Wait7",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If2": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "No Operation, do nothing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Dashboard": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "Update Dashboard",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Update Dashboard",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Update Dashboard": {
+      "main": [
+        [
+          {
+            "node": "Wait2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait2": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch1": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields2",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields2": {
+      "main": [
+        [
+          {
+            "node": "Update Dashboard",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Switch1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "If3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If3": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Edit Fields3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields3": {
+      "main": [
+        [
+          {
+            "node": "Update Dashboard",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets": {
+      "main": [
+        [
+          {
+            "node": "Wait3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets4": {
+      "main": [
+        [
+          {
+            "node": "Summarize",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Summarize": {
+      "main": [
+        [
+          {
+            "node": "If4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If4": {
+      "main": [
+        [
+          {
+            "node": "Wait4",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Edit Fields4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait3": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait4": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets6": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields4": {
+      "main": [
+        [
+          {
+            "node": "RabbitMQ1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "RabbitMQ Trigger1": {
+      "main": [
+        [
+          {
+            "node": "If9",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Automação": {
+      "main": [
+        [
+          {
+            "node": "Wait5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Sheets5": {
+      "main": [
+        [
+          {
+            "node": "If5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If5": {
+      "main": [
+        [
+          {
+            "node": "If6",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "If7",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If7": {
+      "main": [
+        [
+          {
+            "node": "If6",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "No Operation, do nothing1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If6": {
+      "main": [
+        [
+          {
+            "node": "Set Gatilho",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "If8",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If8": {
+      "main": [
+        [
+          {
+            "node": "Set Gatilho",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "No Operation, do nothing2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Gatilho": {
+      "main": [
+        [
+          {
+            "node": "Wait6",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait5": {
+      "main": [
+        [
+          {
+            "node": "Google Sheets5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait6": {
+      "main": [
+        [
+          {
+            "node": "Get Inicio Fluxo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait7": {
+      "main": [
+        [
+          {
+            "node": "If2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If9": {
+      "main": [
+        [
+          {
+            "node": "Set Automação",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "No Operation, do nothing3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If10": {
+      "main": [
+        [
+          {
+            "node": "Set Configuração",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "No Operation, do nothing4",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Inicio Fluxo": {
+      "main": [
+        [
+          {
+            "node": "Set Parametro",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Parametro": {
+      "main": [
+        [
+          {
+            "node": "Next Parametro",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Wait8": {
+      "main": [
+        [
+          {
+            "node": "Next Step",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Next Step": {
+      "main": [
+        [
+          {
+            "node": "Map Step",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Next Parametro": {
+      "main": [
+        [
+          {
+            "node": "Wait8",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If11": {
+      "main": [
+        [
+          {
+            "node": "Reply Comment",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "No Operation, do nothing5",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Current Parametro": {
+      "main": [
+        [
+          {
+            "node": "Next Parametro",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Map Step": {
+      "main": [
+        [
+          {
+            "node": "If12",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If12": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields5",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Current Parametro",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields5": {
+      "main": [
+        [
+          {
+            "node": "Group Fluxo",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Group Fluxo": {
+      "main": [
+        [
+          {
+            "node": "Split Out2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split Out2": {
+      "main": [
+        [
+          {
+            "node": "Switch3",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch3": {
+      "main": [
+        [
+          {
+            "node": "If11",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Wait9",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "If13",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If13": {
+      "main": [
+        [
+          {
+            "node": "DM",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "DM Button",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook Eventos": {
+      "main": [
+        [
+          {
+            "node": "Split Out",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Webhook Assinatura": {
+      "main": [
+        [
+          {
+            "node": "Set Token Verificacao",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "d4f87091-c51b-4a67-8b5e-db311e9128f3",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "4a56748b5c23a6099fb409eebaa09cfbd94061fe160f1d125e3d27e49746b3aa"
+  },
+  "id": "JKK2qFD1uFbCqmlK",
+  "tags": []
+}
