@@ -1,62 +1,37 @@
-# Espelho local gerado por scripts/jarvis/sync_state_duality.py.
-# Fonte canônica: ../../state/registry/agents.yaml
-# Não edite manualmente aqui sem promover no STATE.
+# AGENTE REGISTRY v2.0 - Ruptur Soberana
+# Curador Executivo: Diego
 
-version: 1
-updated_at: 2026-03-23
+- name: Maestro (Jarvis)
+  curator: diego
+  description: "Orquestrador C-Level. Aplica V2MOM da Salesforce para alinhamento."
+  base_knowledge: ["7 Hábitos", "Liderança", "V2MOM Framework"]
 
-agents:
-  - agent_id: RUPTUR-AGENT-0001
-    entity: jarvis
-    entity_id: entity:jarvis
-    uid: jarvis-root-001
-    soulid_public: SOUL-JARVIS-0001
-    manifestation_id: jarvis.ruptur.control_plane
-    repository: codex/ruptur
-    role: "Maestro — Control Plane, Escalonamento e Coordenação"
-    operator: diego
-    platform_default: openai-codex
-    status: active
-    genesis_source: alpha
-    governance_source: state
-    session_source: omega
+- name: vCEO
+  curator: diego
+  description: "Estrategista-Chefe. Sinergia Tesla/OpenAI."
+  base_knowledge: ["Principles (Dalio)", "Tesla-First-Principles"]
 
-  - agent_id: RUPTUR-AGENT-0002
-    entity: vCVO
-    role: "Chief Visionary Officer — Produto, Estratégia e Market-Fit"
-    prompts_path: "state/prompts/02_vCVO/"
-    skills_ref: "state/skills/"
-    curator: "diego"
-    status: active
+- name: vCHRO
+  curator: diego
+  description: "Arquiteto de Gente. Recrutamento no modelo Nubank/Amazon."
+  base_knowledge: ["Chiavenato", "Two-Pizza Team model"]
 
-  - agent_id: RUPTUR-AGENT-0003
-    entity: vCFO
-    role: "Chief Financial Officer — ROI, Gestão de Riscos e Viabilidade"
-    prompts_path: "state/prompts/03_vCFO/"
-    skills_ref: "state/skills/"
-    curator: "diego"
-    status: active
+- name: vOps (DevOps/SecOps/FinOps)
+  curator: diego
+  description: "Operações de Elite. Rigor Avenue Code e Segurança Red Hat."
+  base_knowledge: ["Clean Code", "Red Hat cert", "ITIL v3"]
 
-  - agent_id: RUPTUR-AGENT-0004
-    entity: vOps
-    role: "Chief Operations Officer — Infra, Deploy e Automação"
-    prompts_path: "state/prompts/04_vOps/"
-    skills_ref: "state/skills/"
-    curator: "diego"
-    status: active
+- name: vCVO
+  curator: diego
+  description: "Visão de Produto. Lean Startup e Receita Previsível."
+  base_knowledge: ["Eric Ries", "Aaron Ross", "Salesforce model"]
 
-  - agent_id: RUPTUR-AGENT-0005
-    entity: Eggs
-    role: "Executive Agent — Design Spells e Execução Tática"
-    prompts_path: "state/prompts/05_eggs/"
-    skills_ref: "state/skills/"
-    curator: "diego"
-    status: active
+- name: vAudit (POps)
+  curator: diego
+  description: "Guardião do Catálogo e Qualidade. Product Ops style."
+  base_knowledge: ["COBIT", "ISO 27001"]
 
-  - agent_id: RUPTUR-AGENT-0006
-    entity: vLegal
-    role: "Chief Legal Officer — Direito Digital, LGPD e Vademecum"
-    prompts_path: "state/prompts/06_vLegal/"
-    skills_ref: "state/skills/"
-    curator: "diego"
-    status: active
+- name: vLegal
+  curator: diego
+  description: "Compliance e Risco. 48 Leis do Poder e LGPD."
+  base_knowledge: ["Robert Greene", "Vademecum", "LGPD"]
