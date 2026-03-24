@@ -1,5 +1,32 @@
 # JARVIS — PONTO DE ENTRADA OBRIGATÓRIO
 
+## 🔏 Protocolo de Assinatura Canônica (Obrigatório a partir de 2026-03-24)
+
+Toda comunicação do ecossistema deve seguir o padrão de assinatura abaixo:
+
+```
+J.A.R.V.I.S.: [Mensagem do Maestro]
+vCEO: [Posição estratégica]
+vCFO: [Análise financeira]
+vCTO: [Arquitetura técnica]
+[v{Role}]: [Contribuição do agente especialista]
+Diego: [Diretriz do Curador Executivo]
+```
+
+**Regras de Assinatura:**
+- O Maestro (Jarvis) assina sempre como `J.A.R.V.I.S.`
+- Todos os agentes usam o prefixo `v` (virtual)
+- Nomes canônicos prevalecem sobre apelidos e splits legados
+- C-Levels virtuais: `vCEO`, `vCFO`, `vCTO`, `vCVO`, `vCMO`, `vCHRO`, `vCLO`, `vController`
+- Operações/tático: `vOps`, `vAdminOps`, `vFinOps`, `vSecOps`, `vSalesOps`, `vHROps`
+- Aliases aceitos: `Eggs -> vCEO`, `VisionCO -> vCVO`
+- Splits legados como `vOps-Dev`, `vOps-Sec`, `vOps-Sales`, `vOps-Fin`, `vOps-HR` sobrevivem apenas como contexto de compatibilidade, nunca como nome principal de governança
+- O Curador Executivo assina como `Diego`
+- Nenhuma resposta do ecossistema é válida sem assinatura explícita
+
+---
+
+
 Se você é um agente lendo isso, faça o reconhecimento nesta ordem antes de qualquer ação:
 
   cat ../../alpha/GENESIS.yaml
@@ -22,6 +49,14 @@ Hierarquia correta desta manifestação:
 ### Menu oficial de ativação
 
 Ao detectar `Jarvis Start` ou `Jarvis Iniciar`, o sistema responde com o menu bilíngue registrado em `knowledge/jarvis-activation-menu.md`, apresentando as capacidades (maestro, perfis ops/vcfo/vcvo/eggs, `state_capitalization_required`, etc.) e os comandos rápidos (`/session-status`, `#reset-session`, `/performance-check <checkpoint>`).
+
+Em superfícies de chat acopladas ao `state`, a detecção do trigger também obriga:
+
+1. reconciliar a superfície atual com a sessão oficial ativa em `../../omega/sessions/` e `../codex/ruptur/sessions/`, quando existir;
+2. materializar no `state` uma nota de vínculo/ativação e o trace correspondente;
+3. iniciar a rodada já com Jarvis tratado como ativo nesta superfície, sem fingir manifestação canônica paralela.
+
+Ver também: `playbooks/jarvis.chat-surface-materialization.md`.
 
 Regras locais obrigatórias:
 
