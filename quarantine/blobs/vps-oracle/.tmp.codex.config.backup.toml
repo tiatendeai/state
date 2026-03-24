@@ -1,0 +1,43 @@
+model = "gpt-5.4"
+model_reasoning_effort = "xhigh"
+model_instructions_file = "/Users/diego/.codex/memories/pt-br-global.md"
+[projects."/Users/diego/Downloads/vps-oracle"]
+trust_level = "trusted"
+
+[projects."/Users/diego/Downloads/codex/adk"]
+trust_level = "trusted"
+
+[projects."/Users/diego/Downloads/ruptura"]
+trust_level = "trusted"
+
+[projects."/Users/diego/Downloads/ruptur"]
+trust_level = "trusted"
+
+[projects."/Users/diego/Downloads/codex/ruptur"]
+trust_level = "trusted"
+
+[projects."/Users/diego/Documents/GitHub/tiatendeai-business-boost"]
+trust_level = "trusted"
+
+[projects."/Users/diego/Documents/GitHub/codex/adk"]
+trust_level = "trusted"
+
+[projects."/Users/diego/Documents/GitHub/2dl-automated-tech-farm-and-cash-factory-co"]
+trust_level = "trusted"
+
+[projects."/Users/diego/Documents/GitHub/vps-oracle"]
+trust_level = "trusted"
+
+[notice.model_migrations]
+"gpt-5.3-codex" = "gpt-5.4"
+"gpt-5.2" = "gpt-5.4"
+
+[mcp_servers.notion]
+url = "https://mcp.notion.com/mcp"
+
+[mcp_servers.playwright]
+args = ["@playwright/mcp@latest"]
+command = "npx"
+
+[mcp_servers.figma]
+url = "https://mcp.figma.com/mcp"
