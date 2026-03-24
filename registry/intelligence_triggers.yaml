@@ -12,10 +12,11 @@ triggers:
     action: "Block until LGPD check passes."
 
   - keywords: ["roi", "viabilidade", "preço", "custo", "orçamento", "financeiro"]
-    profiles_activated: ["vCFO"]
+    profiles_activated: ["vCFO", "vController"]
     mandatory_knowledge:
       - "contexts/conselho_de_guerra/01_inteligencia_financeira/"
-    action: "Require cost/benefit evaluation before code execution."
+      - "playbooks/governanca/matriz-acionamento-perfis-virtuais.md"
+    action: "Require cost/benefit evaluation, orcado x realizado and owner of financial deviation before execution."
 
   - keywords: ["funcionalidade", "saas", "design", "produto", "feature", "landing page"]
     profiles_activated: ["vCVO", "vCEO"]
@@ -32,13 +33,14 @@ triggers:
     action: "Inject efficiency and robust architecture patterns before suggesting fix."
 
   - keywords: ["falso positivo", "falso negativo", "retrabalho", "não fazer", "nao fazer", "abortar", "bloquear", "guardrail", "risco"]
-    profiles_activated: ["vAudit", "vCFO", "vOps"]
+    profiles_activated: ["vAudit", "vCFO", "vOps", "vAdminOps"]
     mandatory_knowledge:
       - "playbooks/jarvis.intake-gate.md"
       - "memory/jarvis.state-model.md"
       - "knowledge/trace-grading.md"
       - "knowledge/2026-03-24-mesa-perfis-virtuais-governanca-e-enforcement.md"
-    action: "Require explicit no-go paths, cost-of-error review and abort/bloqueio decision before execution."
+      - "playbooks/governanca/matriz-no-go-bloqueio-aborto-e-uso-ativo.md"
+    action: "Require explicit no-go paths, cost-of-error review, process guardrails and abort/bloqueio decision before execution."
 
   - keywords: ["hipótese", "hipotese", "experimento", "mvp", "lean", "startup enxuta", "aprendizado validado", "survey", "entrevista", "discovery"]
     profiles_activated: ["vCVO", "vAudit", "vCEO"]
@@ -48,9 +50,30 @@ triggers:
     action: "Require test-card logic, anti-vanity metrics and explicit hypothesis before changing product, prompts or automations."
 
   - keywords: ["nomenclatura", "perfil", "agente", "c-level", "backlog", "git project", "governança", "governanca", "regra"]
-    profiles_activated: ["vAudit", "vCVO", "vOps"]
+    profiles_activated: ["vAudit", "vCVO", "vOps", "vAdminOps"]
     mandatory_knowledge:
       - "registry/agents.yaml"
       - "registry/virtual_team_taxonomy.yaml"
       - "playbooks/auto_intelligence_hook.md"
     action: "Enforce canonical names, ownership and materialization in backlog/rules/runbooks before closing the round."
+
+  - keywords: ["variância", "variancia", "desvio", "budget", "orcado", "realizado", "unit economics", "controle"]
+    profiles_activated: ["vController", "vCFO"]
+    mandatory_knowledge:
+      - "playbooks/governanca/matriz-acionamento-perfis-virtuais.md"
+      - "knowledge/2026-03-24-mesa-paralela-a-b-vcontroller-adminops-finops.md"
+    action: "Require target vs actual vs variance, threshold, owner and recovery plan."
+
+  - keywords: ["fila", "handoff", "sop", "rotina", "administrativo", "processo", "cadência operacional", "cadencia operacional"]
+    profiles_activated: ["vAdminOps", "vCEO", "vAudit"]
+    mandatory_knowledge:
+      - "playbooks/governanca/matriz-acionamento-perfis-virtuais.md"
+      - "playbooks/governanca/matriz-no-go-bloqueio-aborto-e-uso-ativo.md"
+    action: "Require owner, SLA, queue state, handoff quality and explicit anti-retrabalho controls."
+
+  - keywords: ["finops", "custo de nuvem", "cloud cost", "aws billing", "token", "custo de ia", "latência x custo", "latencia x custo"]
+    profiles_activated: ["vFinOps", "vCFO", "vOps"]
+    mandatory_knowledge:
+      - "playbooks/governanca/matriz-acionamento-perfis-virtuais.md"
+      - "knowledge/2026-03-24-mesa-paralela-a-b-vcontroller-adminops-finops.md"
+    action: "Require cost driver mapping, unit cost, optimization hypothesis, rollback and service-quality protection before cost cuts."

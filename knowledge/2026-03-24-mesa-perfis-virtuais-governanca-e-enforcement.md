@@ -220,6 +220,7 @@ Perfis mínimos acionados conforme o caso:
 4. nenhuma mesa fecha sem materialização em backlog/rule/runbook/trace/project item
 5. o sistema deve aumentar sua capacidade de **negar**, **bloquear** e **abortar** com motivo explícito
 6. otimização de custo só vale se reduzir desperdício **sem reduzir potência**
+7. a execução paralela das frentes A e B materializa `vController`, `vAdminOps` e `vFinOps` com matriz de acionamento e enforcement runtime mínimo
 
 ---
 
@@ -231,6 +232,9 @@ Itens novos ligados a esta rodada:
 - `JARVIS-AUT-012` — gate de no-go / falso positivo / aborto
 - `JARVIS-AUT-013` — pipeline de materialização pós-mesa
 - `JARVIS-AUT-014` — ativação automática com garantia de uso ativo
+- `JARVIS-AUT-015` — formalização de `vController`, `vAdminOps` e `vFinOps`
+- `JARVIS-AUT-016` — enforcement runtime da matriz de acionamento / no-go / bloqueio / aborto
+- `JARVIS-AUT-017` — telemetria mínima de governança com triggers e score de aderência ao no-go
 
 ---
 

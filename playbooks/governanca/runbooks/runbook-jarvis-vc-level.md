@@ -1,4 +1,4 @@
-# Runbook — Jarvis vC-Level (vCFO, vCVO, vCEO)
+# Runbook — Jarvis vC-Level e perfis adjacentes (vCFO, vCVO, vCEO, vController, vAdminOps, vFinOps)
 
 Data de referência: 2026-03-15
 
@@ -12,6 +12,9 @@ Documentar as correções aplicadas no módulo Jarvis para operação com um ún
 - `vCFO` (financeiro)
 - `vCVO` (priorização estratégica)
 - `vCEO` *(alias operacional legado: `Eggs`)* (execução operacional)
+- `vController` (controle financeiro e variância)
+- `vAdminOps` (SOPs, filas e handoffs)
+- `vFinOps` (custos de cloud/IA e eficiência)
 
 2. Camada de execução de missão:
 - criação de missão
@@ -30,11 +33,14 @@ Documentar as correções aplicadas no módulo Jarvis para operação com um ún
 
 ### Estratégia e operação
 
-- `POST /jarvis/ask` (`profile`: `ops|vcfo|vcvo|eggs`)
+- `POST /jarvis/ask` (`profile`: `ops|vcfo|vcvo|eggs|vceo|vcontroller|vadminops|vfinops`)
 - `POST /jarvis/ask/vcfo`
 - `POST /jarvis/ask/vcvo`
 - `POST /jarvis/ask/vceo` (alias canônico; compatível com `/jarvis/ask/eggs`)
 - `POST /jarvis/ask/eggs`
+- `POST /jarvis/ask/vcontroller`
+- `POST /jarvis/ask/vadminops`
+- `POST /jarvis/ask/vfinops`
 - `POST /jarvis/vcfo/weekly-close`
 - `POST /jarvis/vcvo/weekly-brief`
 - `POST /jarvis/vceo/weekly-close` (alias canônico; compatível com `/jarvis/eggs/weekly-close`)

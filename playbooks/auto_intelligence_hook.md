@@ -50,6 +50,9 @@ e nunca avanço automático para `executando`.
 | `falso positivo`, `retrabalho`, `risco`, `não fazer` | trace grading + state model + cost review | vAudit + vCFO + vOps |
 | `hipótese`, `experimento`, `lean`, `discovery` | *A Startup Enxuta* + test-card logic | vCVO + vAudit + vCEO |
 | `nomenclatura`, `perfil`, `backlog`, `governança` | taxonomia virtual + materialização obrigatória | vAudit + vCVO + vOps |
+| `variância`, `budget`, `orçado x realizado` | matriz de controle + thresholds | vController + vCFO |
+| `fila`, `handoff`, `sop`, `administrativo` | matriz operacional + anti-retrabalho | vAdminOps + vCEO + vAudit |
+| `finops`, `token`, `cloud cost`, `custo de ia` | custo unitário + rollback + SLO | vFinOps + vCFO + vOps |
 
 ---
 
@@ -78,6 +81,11 @@ Um conhecimento só pode ser considerado "ativo" quando houver:
 5. condição de desligamento
 
 Sem isso, o conteúdo é apenas biblioteca; não é automação viva.
+
+Referências operacionais obrigatórias desta camada:
+
+- `playbooks/governanca/matriz-acionamento-perfis-virtuais.md`
+- `playbooks/governanca/matriz-no-go-bloqueio-aborto-e-uso-ativo.md`
 
 ---
 

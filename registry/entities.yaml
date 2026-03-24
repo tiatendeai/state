@@ -48,6 +48,21 @@ entities:
         focus: "execução operacional, missões, disciplina de entrega e cadência"
         knowledge_domain: "state/knowledge/management/"
         source_refs: ["runbook-jarvis-vc-level.md", "jarvis_ops_repo", "backend/README.md"]
+      - id: vcontroller
+        role: "vController (controle financeiro e variância)"
+        focus: "budget, orçado x realizado, unit economics e custo por entrega aceita"
+        knowledge_domain: "state/knowledge/management/"
+        source_refs: ["virtual_team_taxonomy.yaml", "matriz-acionamento-perfis-virtuais.md"]
+      - id: vadminops
+        role: "vAdminOps (operações administrativas)"
+        focus: "SOPs, handoffs, filas, rotina administrativa e eliminação de retrabalho"
+        knowledge_domain: "state/knowledge/management/"
+        source_refs: ["virtual_team_taxonomy.yaml", "matriz-acionamento-perfis-virtuais.md"]
+      - id: vfinops
+        role: "vFinOps (custos de infra e IA)"
+        focus: "custos de cloud/IA, throughput, latência, eficiência e margem operacional"
+        knowledge_domain: "state/knowledge/management/"
+        source_refs: ["virtual_team_taxonomy.yaml", "matriz-acionamento-perfis-virtuais.md"]
       - id: iazinha
         role: "CX & Storytelling"
         focus: "interface de acolhimento, tradução técnica e primeiro contato"

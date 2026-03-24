@@ -138,4 +138,7 @@ source_refs:
   - "registry/agents.yaml"
   - "registry/intelligence_triggers.yaml"
   - "playbooks/auto_intelligence_hook.md"
+  - "playbooks/governanca/matriz-acionamento-perfis-virtuais.md"
+  - "playbooks/governanca/matriz-no-go-bloqueio-aborto-e-uso-ativo.md"
   - "knowledge/2026-03-24-mesa-perfis-virtuais-governanca-e-enforcement.md"
+  - "knowledge/2026-03-24-mesa-paralela-a-b-vcontroller-adminops-finops.md"
