@@ -1,0 +1,518 @@
+;Imunes e Isentas em Geral;;
+CÓDIGO;DESCRIÇÃO;TIPO;CODIGO AUXILIAR
+1;ATIVO;S;1
+101;ATIVO CIRCULANTE;S;2
+10101;DISPONIBILIDADES;S;3
+1010101;CAIXA GERAL;S;4
+101010101;Caixa Matriz;A;5
+101010102;Caixa Filiais;A;6
+1010102;DEPÓSITOS BANCÁRIOS - NO PAÍS;S;7
+101010201;Bancos Conta Movimento;A;8
+101010202;Contas Bancárias - Subvenções;A;9
+101010203;Contas Bancárias - Doações;A;10
+101010204;Contas Bancárias - Contribuições;A;11
+101010209;Contas Bancárias - Recursos Sujeitos a Restrições;A;12
+1010103;DEPÓSITOS BANCÁRIOS - NO EXTERIOR;S;13
+101010301;Bancos Conta Movimento - no Exterior;A;14
+101010302;Recursos no Exterior Decorrentes de Exportação;A;15
+101010303;Contas Bancárias - Subvenções - no Exterior;A;16
+101010304;Contas Bancárias - Doações - no Exterior;A;17
+101010305;Contas Bancárias - Contribuições - no Exterior;A;18
+101010309;Contas Bancárias - Recursos Sujeitos a Restrições - no Exterior;A;19
+1010104;NUMERÁRIOS EM TRÂNSITO;S;20
+101010401;Numerários em Trânsito;A;21
+101010405;VALORES MOBILIÁRIOS - NO PAÍS;S;22
+101010501;Títulos e Valores Mobiliários;A;23
+101010502;Valores Mobiliários - Mercado de Capitais Interno;A;24
+101010503;Valores Mobiliários - Aplicações de Subvenções;A;25
+101010504;Valores Mobiliários - Aplicações de Doações;A;26
+101010505;Valores Mobiliários - Aplicações de Contribuições;A;27
+101010509;Valores Mobiliários - Aplicações de Recursos Sujeitos a Restrições;A;28
+1010106;VALORES MOBILIÁRIOS - NO EXTERIOR;S;29
+101010601;Títulos e Valores Mobiliários - no Exterior;A;30
+101010602;Valores Mobiliários - Mercado de Capitais Externo;A;31
+101010603;Valores Mobiliários - Aplicações de Subvenções - no Exterior;A;32
+101010604;Valores Mobiliários - Aplicações de Doações - no Exterior;A;33
+101010605;Valores Mobiliários - Aplicações de Contribuições - no Exterior;A;34
+101010609;Valores Mobiliários - Aplicações de Recursos Sujeitos a Restrições - no Exterior;A;35
+1010109;OUTRAS DISPONIBILIDADES;S;36
+101010909;Outras Disponibilidades;A;37
+10102;CRÉDITOS;S;38
+1010201;ADIANTAMENTOS;S;39
+101020101;Adiantamentos a Fornecedores - Circulante;A;40
+101020102;Adiantamentos a Funcionários - Circulante;A;41
+101020103;Adiantamentos a Terceiros - Circulante;A;42
+1010202;VALORES A RECEBER;S;43
+101020201;Mensalidades a Receber - Educação Básica;A;44
+101020202;Mensalidades a Receber - Educação Superior - Graduação;A;45
+101020203;Mensalidades a Receber - Educação Superior - Pós-graduação;A;46
+101020204;Clientes – Outros Serviços Educacionais a Receber;A;47
+101020205;Clientes – Serviços de Saúde;A;48
+101020206;Clientes – Assistência Social;A;49
+101020207;Valores a Receber de Terceiros;A;50
+101020208;Valores a Receber de Pessoas Ligadas;A;51
+101020209;Recebíveis Sujeitos a Ajuste a Valor Presente;A;52
+101020221;(-) Juros a Apropriar Relativos a Ajustes a Valor Presente;A;53
+101020222;(-) Provisões para Créditos de Liquidação Duvidosa;A;54
+1010203;TRIBUTOS A RECUPERAR/COMPENSAR;S;55
+101020301;Tributos Federais a Recuperar;A;56
+101020302;Tributos Estaduais a Recuperar;A;57
+101020303;Tributos Municipais a Recuperar;A;58
+101020304;Tributos Federais a Compensar;A;59
+101020305;Tributos Estaduais a Compensar;A;60
+101020306;Tributos Municipais a Compensar;A;61
+1010205;CRÉDITOS EM CONTENCIOSO - CIRCULANTE;S;62
+101020501;Depósitos em Contencioso - Circulante;A;63
+101020509;Outros Créditos em Contencioso - Circulante;A;64
+1010209;OUTROS CRÉDITOS - CIRCULANTE;S;65
+101020901;Mútuos com Pessoas Não Ligadas (Físicas/Jurídicas) - Circulante;A;66
+101020902;Títulos a Receber;A;67
+101020903;Juros a Receber;A;68
+101020904;Demais Créditos a Receber;A;69
+101020921;(-) Provisões para Outros Créditos de Liquidação Duvidosa;A;70
+101020922;(-) Perdas Estimadas para Redução ao Valor Recuperável - Outros Créditos;A;71
+101020923;(-) Juros a Apropriar Relativos a Ajustes a Valor Presente - Outros Créditos;A;72
+10103;ESTOQUES;S;73
+1010301;ESTOQUES DE MERCADORIAS/PRODUTOS/SERVIÇOS;S;74
+101030101;Mercadorias;A;75
+101030102;Produtos;A;76
+101030103;Almoxarifado;A;77
+101030109;Outros Estoques;A;78
+101030121;(-) Perdas Estimadas para Redução ao Valor Recuperável - Estoque;A;79
+101030122;(-) Ajuste a Valor Presente - Estoques;A;80
+10105;DESPESAS DO EXERCÍCIO SEGUINTE;S;81
+1010501;DESPESAS DO EXERCÍCIO SEGUINTE - PAGAS ANTECIPADAMENTE;S;82
+101050101;Alugueis pagos Antecipadamente;A;83
+101050102;Prêmios de Seguros a Apropriar;A;84
+101050109;Outros Custos e Despesas Pagos Antecipadamente;A;85
+10109;OUTRAS CONTAS RETIFICADORAS;S;86
+1010901;OUTRAS CONTAS RETIFICADORAS DO CIRCULANTE;S;87
+101090121;(-) Ajuste a Valor Presente - Receita Financeira a Apropriar;A;88
+101090122;(-) Outras Contas Retificadoras do Circulante;A;89
+102;ATIVO NÃO CIRCULANTE;S;90
+10201;REALIZÁVEL A LONGO PRAZO;S;91
+1020101;CRÉDITOS E VALORES - LONGO PRAZO;S;92
+102010101;Mensalidades a Receber - Educação Básica - Longo Prazo;A;93
+102010102;Mensalidades a Receber - Educação Superior - Graduação - Longo Prazo;A;94
+102010103;Mensalidades a Receber - Educação Superior - Pós-graduação - Longo Prazo;A;95
+102010104;Clientes – Outros Serviços Educacionais a Receber - Longo Prazo;A;96
+102010105;Clientes – Serviços de Saúde - Longo Prazo;A;97
+102010106;Clientes – Assistência Social - Longo Prazo;A;98
+102010107;Valores a Receber de Terceiros - Longo Prazo;A;99
+102010108;Valores a Receber - Pessoas Ligadas - Longo Prazo;A;100
+102010109;Recebíveis Sujeitos a Ajuste a Valor Presente - Longo Prazo;A;101
+102010110;Mútuos com Pessoas Não Ligadas (Físicas/Jurídicas) - Longo Prazo;A;102
+102010111;Mútuos com Pessoas Ligadas (Físicas/Jurídicas) - Longo Prazo;A;103
+102010112;Adiantamento para Futuro Aumento de Capital - Ativo - Longo Prazo;A;104
+102010113;Valores Mobiliários - No País - Longo Prazo;A;105
+102010114;Valores Mobiliários - No Exterior - Longo Prazo;A;106
+102010115;Créditos por Contribuições e Doações - Longo Prazo;A;107
+102010121;(-) Provisões para Créditos de Liquidação Duvidosa - Longo Prazo;A;108
+102010122;(-) Perdas Estimadas para Redução ao Valor Recuperável - Realizável a Longo Prazo;A;109
+102010123;(-) Juros a Apropriar Relativos a Ajustes a Valor Presente - Realizável a Longo Prazo;A;110
+102010124;(-) Outras Contas Retificadoras - Longo Prazo;A;111
+1020102;CRÉDITOS EM CONTENCIOSO - LONGO PRAZO;S;112
+102010201;Depósitos em Contencioso - Longo Prazo;A;113
+102010209;Outros Créditos em Contencioso - Longo Prazo;A;114
+1020109;DESPESAS PAGAS ANTECIPADAMENTE - LONGO PRAZO;S;115
+102010901;Alugueis pagos Antecipadamente - Longo Prazo;A;116
+102010902;Prêmios de Seguros a Apropriar - Longo Prazo;A;117
+102010909;Outros Custos e Despesas Pagos Antecipadamente - Longo Prazo;A;118
+10202;INVESTIMENTOS;S;119
+1020201;PARTICIPAÇÕES PERMANENTES EM SOCIEDADES - NO PAÍS;S;120
+102020101;Participações Permanentes em Sociedades - no País - Avaliadas pelo Custo;A;121
+102020102;Participações Permanentes em Sociedades - no País - Avaliadas pelo Valor Justo;A;122
+102020103;Participações Permanentes em Coligadas - no País - Avaliadas pelo Custo;A;123
+102020104;Participações Permanentes em Coligadas - no País - Avaliadas pelo Valor Justo;A;124
+102020105;Participações Permanentes em Coligadas/Controladas - no País - Avaliadas pelo MEP;A;125
+102020106;Ágios em Investimentos - no País;A;126
+102020107;Ágios em Investimentos - no País - Mais Valia;A;127
+102020108;Ágios em Investimentos - no País - Rentabilidade Futura;A;128
+102020121;(-) Deságios e Provisão para Perdas Prováveis em Investimentos - no País;A;129
+1020202;PARTICIPAÇÕES PERMANENTES EM SOCIEDADES - NO EXTERIOR;S;130
+102020201;Participações Permanentes em Sociedades - no Exterior - Avaliadas pelo Custo;A;131
+102020202;Participações Permanentes em Sociedades - no Exterior - Avaliadas pelo Valor Justo;A;132
+102020203;Participações Permanentes em Coligadas - no Exterior - Avaliadas pelo Custo;A;133
+102020204;Participações Permanentes em Coligadas - no Exterior - Avaliadas pelo Valor Justo;A;134
+102020205;Participações Permanentes em Coligadas/Controladas - no Exterior - Avaliadas pelo MEP;A;135
+102020206;Ágios em Investimentos - no Exterior;A;136
+102020207;Ágios em Investimentos - no Exterior - Mais Valia;A;137
+102020208;Ágios em Investimentos - no Exterior - Rentabilidade Futura;A;138
+102020221;(-) Deságios e Provisão para Perdas Prováveis em Investimentos - no Exterior;A;139
+1020209;OUTROS INVESTIMENTOS PERMANENTES;S;140
+102020909;Outros Investimentos Permanentes;A;141
+102020921;(-) Deságios e Provisão para Perdas Prováveis em Investimentos;A;142
+102020922;(-) Outras Contas Retificadoras;A;143
+10203;IMOBILIZADO;S;144
+1020301;IMOBILIZADO - AQUISIÇÃO;S;145
+102030101;Terrenos;A;146
+102030102;Edifícios e Construções;A;147
+102030103;Construções em Andamento - Imóvel Próprio;A;148
+102030104;Outras Imobilizações em Andamento;A;149
+102030105;Benfeitorias em Imóveis de Terceiros;A;150
+102030106;Máquinas, Equipamentos e Instalações Industriais;A;151
+102030107;Móveis, Utensílios e Instalações Comerciais;A;152
+102030108;Veículos;A;153
+102030109;Embarcações;A;154
+102030110;Aeronaves;A;155
+102030111;Recursos Minerais;A;156
+102030112;Florestamento e Reflorestamento;A;157
+102030113;Softwares - Imobilizado;A;158
+102030114;Direitos Contratuais de Exploração de Florestas;A;159
+102030121;(-) Depreciação Acumulada;A;160
+102030122;(-) Amortização Acumulada;A;161
+102030123;(-) Exaustão Acumulada;A;162
+102030124;(-) Perdas Estimadas por Redução ao Valor Recuperável - Imobilizado - Aquisição;A;163
+1020302;IMOBILIZADO - ARRENDAMENTO;S;164
+102030201;Veículos;A;165
+102030202;Embarcações;A;166
+102030203;Aeronaves;A;167
+102030204;Máquinas, Equipamentos e Instalações Industriais;A;168
+102030205;Móveis, Utensílios e Instalações Comerciais;A;169
+102030209;Outras Imobilizações por Arrendamento;A;170
+102030221;(-) Depreciações de Imobilizados Objeto de Arrendamento Mercantil;A;171
+102030222;(-) Perdas Estimadas por Redução ao Valor Recuperável - Imobilizado Arrendamento;A;172
+1020309;OUTROS IMOBILIZADOS;S;173
+102030909;Outras Imobilizações;A;174
+102030921;(-) Outras Depreciações, Amortizações e Quotas de Exaustão;A;175
+102030922;(-) Outras Contas Redutoras do Imobilizado;A;176
+10204;INTANGÍVEL;S;177
+1020401;ATIVOS INTANGÍVEIS;S;178
+102040101;Marcas e Patentes;A;179
+102040102;Concessões;A;180
+102040103;Direitos Autorais;A;181
+102040104;Fundo de Comércio;A;182
+102040105;Software ou Programas de Computador;A;183
+102040106;Franquias;A;184
+102040107;Pesquisa e Desenvolvimento de Produtos;A;185
+102040109;Outros Ativos Intangíveis;A;186
+102040121;(-) Amortização do Intangível;A;187
+102040122;(-) Perdas Estimadas por Redução ao Valor Recuperável - Intangível;A;188
+102040123;(-) Outras Contas Redutoras do Intangível;A;189
+10205;DIFERIDO (Em Extinção);S;190
+1020501;ATIVO DIFERIDO;S;191
+102050101;Despesas Pré-Operacionais ou Pré-Industriais;A;192
+102050102;Despesas com Pesquisas Científicas ou Tecnológicas;A;193
+102050109;Demais Aplicações em Despesas Amortizáveis;A;194
+102050121;(-) Amortização do Diferido;A;195
+2;PASSIVO;S;196
+201;PASSIVO CIRCULANTE;S;197
+20101;OBRIGAÇÕES DO CIRCULANTE;S;198
+2010101;SALÁRIOS E ENCARGOS SOCIAIS - CIRCULANTE;S;199
+201010101;Salários e Remunerações a Pagar;A;200
+201010102;INSS a Recolher;A;201
+201010103;FGTS a Recolher;A;202
+201010109;Demais Encargos a Recolher;A;203
+2010103;FORNECEDORES - CIRCULANTE;S;204
+201010301;Fornecedores - No País - Circulante;A;205
+201010302;Fornecedores - No Exterior - Circulante;A;206
+201010321;(-) Encargos a Apropriar Relativos a Ajustes a Valor Presente - Fornecedores Circulante;A;207
+2010105;CONTAS A PAGAR - CIRCULANTE;S;208
+201010501;Adiantamentos de Clientes - no País;A;209
+201010502;Adiantamentos de Clientes - no Exterior;A;210
+201010509;Outras Contas a Pagar - Circulante;A;211
+201010521;(-) Encargos a Apropriar Relativos a Ajustes a Valor Presente - Contas a Pagar Circulante;A;212
+2010107;EMPRÉSTIMOS OU FINANCIAMENTOS - CIRCULANTE;S;213
+201010701;Duplicatas Descontadas;A;214
+201010702;Empréstimos ou Financiamentos - no País - Circulante;A;215
+201010703;Empréstimos ou Financiamentos - no Exterior - Circulante;A;216
+201010704;Adiantamentos de Contrato de Câmbio;A;217
+201010705;Arrendamento Mercantil - no País - Circulante;A;218
+201010706;Arrendamento Mercantil - no Exterior - Circulante;A;219
+201010721;(-) Encargos a Apropriar Relativos a Ajustes a Valor Presente - Empr./Financ Circulante;A;220
+2010109;OBRIGAÇÕES FISCAIS - CIRCULANTE;S;221
+201010901;Tributos Federais a Recolher;A;222
+201010902;Tributos Estaduais a Recolher;A;223
+201010903;Tributos Municipais a Recolher;A;224
+2010111;TÍTULOS DE DÍVIDA - CIRCULANTE;S;225
+201011101;Títulos de Dívida a Pagar - Circulante;A;226
+201011113;PROVISÕES - CIRCULANTE;S;227
+201011301;Provisões de Natureza Trabalhista - Circulante;A;228
+201011302;Provisões de Natureza Trabalhista - Em Contencioso - Circulante;A;229
+201011303;Provisões de Natureza Tributária - Circulante;A;230
+201011304;Provisões de Natureza Tributária - Em Contencioso - Circulante;A;231
+201011305;Provisões de Natureza Cível - Circulante;A;232
+201011306;Provisões de Natureza Cível - Em Contencioso - Circulante;A;233
+201011309;Outras Provisões - Circulante;A;234
+201011311;Outras Provisões - Em Contencioso - Circulante;A;235
+2010115;OUTRAS CONTAS A PAGAR - CIRCULANTE;S;236
+201011501;Mútuos de Pessoas Ligadas (Físicas/Jurídicas) - Circulante;A;237
+201011502;Mútuos de Pessoas Não Ligadas (Físicas/Jurídicas) - Circulante;A;238
+201011503;Faturamento para Entrega Futura - Circulante;A;239
+201011509;Outras Contas a Pagar - Circulante;A;240
+2010117;OUTRAS CONTAS RETIFICADORAS - PASSIVO CIRCULANTE;S;241
+201011701;(-) Demais Contas Retificadoras - Passivo Circulante;A;242
+202;PASSIVO NÃO-CIRCULANTE;S;243
+20201;OBRIGAÇÕES A LONGO PRAZO;S;244
+2020101;EMPRÉSTIMOS E FINANCIAMENTOS - LONGO PRAZO;S;245
+202010101;Fornecedores - No País - Longo Prazo;A;246
+202010102;Fornecedores - No Exterior - Longo Prazo;A;247
+202010103;Credores por Financiamento - Longo Prazo;A;248
+202010104;Títulos a Pagar - Longo Prazo;A;249
+202010105;Duplicatas Descontadas - Longo Prazo;A;250
+202010106;Empréstimos ou Financiamentos - no País - Longo Prazo;A;251
+202010107;Empréstimos ou Financiamentos - no Exterior - Longo Prazo;A;252
+202010108;Adiantamentos de Contrato de Câmbio;A;253
+202010109;Arrendamento Mercantil - no País - Longo Prazo;A;254
+202010110;Arrendamento Mercantil - no Exterior - Longo Prazo;A;255
+202010121;(-) Encargos a Apropriar Relativos a Ajustes a Valor Presente - Empr/Financ - Longo Prazo;A;256
+2020103;OBRIGAÇÕES FISCAIS - LONGO PRAZO;S;257
+202010301;Tributos Federais a Recolher - Longo Prazo;A;258
+202010302;Tributos Estaduais a Recolher - Longo Prazo;A;259
+202010303;Tributos Municipais a Recolher - Longo Prazo;A;260
+2020105;TÍTULOS DE DÍVIDA - LONGO PRAZO;S;261
+202010501;Títulos de Dívida a Pagar - Longo Prazo;A;262
+2020107;PROVISÕES - LONGO PRAZO;S;263
+202010701;Provisões de Natureza Trabalhista - Longo Prazo;A;264
+202010702;Provisões de Natureza Trabalhista - em Contencioso - Longo Prazo;A;265
+202010703;Provisões de Natureza Tributária - Longo Prazo;A;266
+202010704;Provisões de Natureza Tributária - em Contencioso - Longo Prazo;A;267
+202010705;Provisões de Natureza Cível - Longo Prazo;A;268
+202010706;Provisões de Natureza Cível - em Contencioso - Longo Prazo;A;269
+2020109;OUTRAS CONTAS A PAGAR - LONGO PRAZO;S;270
+202010901;Mútuos de Pessoas Não Ligadas (Físicas/Jurídicas) - Longo Prazo;A;271
+202010902;Mútuos de Pessoas Ligadas (Físicas/Jurídicas) - Longo Prazo;A;272
+202010903;Adiantamento para Futuro Aumento de Patrimônio Social - Passivo - Longo Prazo;A;273
+202010909;Outras Contas a Pagar - Longo Prazo;A;274
+2020111;OUTRAS CONTAS RETIFICADORAS - PASSIVO - LONGO PRAZO;S;275
+202011121;(-) Demais Contas Retificadoras - Passivo - Longo Prazo;A;276
+2020113;RECEITAS DIFERIDAS;S;277
+202011301;Receitas Diferidas;A;278
+202011321;(-) Custos Correspondentes às Receitas Diferidas;A;279
+205;PATRIMÔNIO LÍQUIDO SOCIAL;S;280
+20501;PATRIMÔNIO SOCIAL;S;281
+2050101;PATRIMÔNIO SOCIAL REALIZADO - DE RESIDENTE NO PAÍS;S;282
+205010101;Fundo Patrimonial Social Subscrito de Domiciliados e Residentes no País;A;283
+205010102;(-) Fundo Patrimonial Social a Integralizar de Domiciliados e Residentes no País;A;284
+205010105;Fundos Especiais de Domiciliados e Residentes no País;A;285
+2050102;PATRIMÔNIO SOCIAL REALIZADO - DE RESIDENTE/DOMICILIADO NO EXTERIOR;S;286
+205010201;Fundo Patrimonial Social Subscrito de Domiciliados e Residentes no Exterior;A;287
+205010202;(-) Fundo Patrimonial Social a Integralizar de Domiciliados e Residentes no Exterior;A;288
+205010205;Fundos Especiais de Domiciliados e Residentes no Exterior;A;289
+20502;RESERVAS;S;290
+2050201;RESERVAS DO PATRIMÔNIO SOCIAL;S;291
+205020101;Reserva Estatutária;A;292
+205020102;Reserva de Reavaliação;A;293
+205020103;Reserva de Doações e Subvenções Patrimoniais;A;294
+205020109;Outras Reservas;A;295
+20503;AJUSTES DE AVALIAÇÃO PATRIMONIAL;S;296
+2050301;AJUSTES DE AVALIAÇÃO PATRIMONIAL (Lei 11.638/2007);S;297
+205030101;Ajustes às Normas Internacionais de Contabilidade;A;298
+205030121;(-) Ajustes às Normas Internacionais de Contabilidade;A;299
+20505;SUPERÁVITS OU DÉFICITS ACUMULADOS;S;300
+2050501;SUPERÁVITS OU DÉFICITS ACUMULADOS;S;301
+205050101;Superávits (Déficits) Acumulados;A;302
+3;SUPERÁVIT/DÉFICIT LÍQUIDO DO EXERCÍCIO;S;303
+301;RECEITAS OPERACIONAIS;S;304
+30101;RECEITA DAS ATIVIDADES;S;305
+3010101;RECEITA DE SUBVENÇÕES;S;306
+301010101;Subvenções Governamentais - União;A;307
+301010102;Subvenções Governamentais - Estados;A;308
+301010103;Subvenções Governamentais - Municípios;A;309
+301010104;Subvenções Não Governamentais de Pessoas Jurídicas;A;310
+301010105;Subvenções Não Governamentais de Pessoas Físicas;A;311
+3010102;RECEITA DE DOAÇÕES;S;312
+301010201;Doações Governamentais - União;A;313
+301010202;Doações Governamentais - Estados;A;314
+301010203;Doações Governamentais - Municípios;A;315
+301010204;Doações Não Governamentais de Pessoas Jurídicas;A;316
+301010205;Doações Não Governamentais de Pessoas Físicas;A;317
+3010103;RECEITA DE CONTRIBUIÇÕES;S;318
+301010301;Contribuições Governamentais - União;A;319
+301010302;Contribuições Governamentais - Estados;A;320
+301010303;Contribuições Governamentais - Municípios;A;321
+301010304;Contribuições Não Governamentais de Pessoas Jurídicas;A;322
+301010305;Contribuições Não Governamentais de Pessoas Físicas;A;323
+3010105;RECEITAS DA GRATUIDADE E DO TRABALHO VOLUNTÁRIO;S;324
+301010501;Receitas da Gratuidade;A;325
+301010509;(-) Custos e Despesas da Gratuidade;A;326
+301010511;Receitas do Trabalho Voluntário;A;327
+301010519;(-) Custos e Despesas do Trabalho Voluntário;A;328
+3010107;RECEITA DA VENDA DE PRODUTOS/MERCADORIAS/SERVIÇOS;S;329
+301010701;VENDA DE PRODUTOS;S;330
+30101070101;Da Atividade de Educação;A;331
+30101070102;Da Atividade de Saúde;A;332
+30101070103;Da Atividade de Assistência Social;A;333
+301010702;VENDA DE MERCADORIAS;S;334
+30101070201;Da Atividade de Educação;A;335
+30101070202;Da Atividade de Saúde;A;336
+30101070203;Da Atividade de Assistência Social;A;337
+301010703;VENDA DE SERVIÇOS;S;338
+30101070301;RECEITA DE PRESTAÇÃO DE SERVIÇOS EDUCACIONAIS - EDUCAÇÃO BÁSICA;S;339
+3,01011E+12;Receita de mensalidades (alunos pagantes);A;340
+3,01011E+12;Receita de mensalidades revertidas como bolsas de estudo educação básica (bolsistas integrais – Funcionários e seus dependentes);A;341
+3,01011E+12;Receita de mensalidades revertidas como bolsas de estudo (bolsistas integrais – critério de seleção Lei 12.101/2009);A;342
+3,01011E+12;Receita de mensalidades revertidas como bolsas de estudo (bolsistas parciais 50% – critério de seleção Lei 12.101/2009);A;343
+3,01011E+12;Receita de mensalidades revertidas como bolsas de estudo (bolsistas parciais – beneficiários previstos pelo art. 31 do Decreto nº 7.237/2010);A;344
+3,01011E+12;Receita de mensalidades revertidas como bolsas de estudo educação básica (bolsistas integrais – beneficiários não carentes);A;345
+3,01011E+12;Receita de mensalidades revertidas como bolsas de estudo educação básica (bolsistas parciais 50% – beneficiários não carentes);A;346
+3,01011E+12;Receita de mensalidades revertidas como bolsas de estudo educação básica (outros casos não previstos);A;347
+3,01011E+12;Serviços Educacionais – Outros;A;348
+30101070302;RECEITA DE PRESTAÇÃO DE SERVIÇOS EDUCACIONAIS – EDUCAÇÃO SUPERIOR – GRADUAÇÃO;S;349
+3,01011E+12;Receita de mensalidades (alunos pagantes);A;350
+3,01011E+12;Receita de mensalidades revertidas como bolsas de estudo graduação (bolsistas integrais PROUNI – Funcionários e seus dependentes);A;351
+3,01011E+12;Receita de mensalidades revertidas como bolsas de estudo graduação (bolsistas parciais 50% PROUNI – Funcionários e seus dependentes);A;352
+3,01011E+12;Receita de mensalidades revertidas como bolsas de estudo graduação (bolsistas parciais 25% PROUNI – Funcionários e seus dependentes);A;353
+3,01011E+12;Receita de mensalidades revertidas como bolsas de estudo graduação (bolsistas integrais PROUNI – beneficiários critério de seleção Lei 11.096/2005);A;354
+3,01011E+12;Receita de mensalidades revertidas como bolsas de estudo graduação (bolsistas parciais 50% PROUNI – beneficiários critério de seleção Lei 11.096/2005);A;355
+3,01011E+12;Receita de mensalidades revertidas como bolsas de estudo graduação (bolsistas parciais 25% PROUNI – beneficiários critério de seleção Lei 11.096/2005);A;356
+3,01011E+12;Receita de mensalidades revertidas como bolsas de estudo graduação (bolsistas integrais – Bolsas da própria instituição);A;357
+3,01011E+12;Receita de mensalidades revertidas como bolsas de estudo graduação (bolsistas parciais 50% – Bolsas da própria instituição);A;358
+3,01011E+12;Receita de mensalidades revertidas como bolsas de estudo graduação (outros casos não previstos);A;359
+3,01011E+12;Serviços Educacionais – Outros;A;360
+30101070303;RECEITA DE PRESTAÇÃO DE SERVIÇOS EDUCACIONAIS – EDUCAÇÃO SUPERIOR – PÓS-GRADUAÇÃO;S;361
+3,01011E+12;Receita de mensalidades (alunos pagantes);A;362
+3,01011E+12;Receita de mensalidades revertidas como bolsas de estudo pós-graduação (bolsistas integrais – Funcionários e seus dependentes);A;363
+3,01011E+12;Receita de mensalidades revertidas como bolsas de estudo pós-graduação (bolsistas parciais – Funcionários e seus dependentes);A;364
+3,01011E+12;Receita de mensalidades revertidas como bolsas de estudo pós-graduação (bolsistas integrais – Bolsas da própria instituição);A;365
+3,01011E+12;Receita de mensalidades revertidas como bolsas de estudo pós-graduação (bolsistas parciais – Bolsas da própria instituição);A;366
+3,01011E+12;Receita de mensalidades revertidas como bolsas de estudo pós-graduação (outros casos não previstos);A;367
+3,01011E+12;Parcerias com outras entidades sem fins lucrativos (Art. 3º §§ 3º e 4º do Dec 7.237/2010);A;368
+3,01011E+12;Serviços Educacionais – Outros;A;369
+30101070304;RECEITA DE PRESTAÇÃO DE SERVIÇOS DE SAÚDE;S;370
+3,01011E+12;Pacientes Particulares;A;371
+3,01011E+12;Convênios – SUS;A;372
+3,01011E+12;Convênios – Outros;A;373
+3,01011E+12;Parcerias com outras entidades sem fins lucrativos (Art. 3º §§ 3º e 4º do Dec 7.237/2010);A;374
+3,01011E+12;Serviços de Saúde – Outros;A;375
+30101070305;RECEITAS DA PRESTAÇÃO DE SERVIÇOS DE ASSISTÊNCIA SOCIAL;S;376
+3,01011E+12;Pacientes Particulares;A;377
+3,01011E+12;Pessoa Idosa Abrigada (Art. 35 da Lei 10.741/2003);A;378
+3,01011E+12;Convênios – Outros;A;379
+3,01011E+12;Parcerias com outras entidades sem fins lucrativos (Art. 3º §§ 3º e 4º do Dec 7.237/2010);A;380
+3,01011E+12;Serviços de Assistência Social – Outros;A;381
+3010109;OUTRAS RECEITAS;S;382
+301010901;Contribuições Sindicais;A;383
+301010902;Contribuições Confederativas/Associativas;A;384
+301010903;Mensalidades;A;385
+301010909;Outras Receitas das Atividades;A;386
+30102;DEDUÇÕES DAS RECEITAS;S;387
+3010201;DEDUÇÕES DAS RECEITAS DAS ATIVIDADES;S;388
+301020101;(-) Vendas Canceladas e Devoluções de Vendas;A;389
+301020102;(-) Descontos Incondicionais e Abatimentos;A;390
+301020103;(-) ICMS;A;391
+301020104;(-) Cofins Sobre Receita Bruta;A;392
+301020105;(-) PIS/Pasep Sobre Receita Bruta;A;393
+301020106;(-) ISS;A;394
+301020109;(-) Demais Impostos e Contribuições Incidentes sobre Vendas e Serviços;A;395
+301020110;(-) DEDUÇÕES - ENTIDADE DE EDUCAÇÃO (Art. 10 do ProUni);S;396
+30102011101;(-) BOLSAS DE ESTUDO CONCEDIDAS - EDUCAÇÃO BÁSICA;S;397
+3,0102E+12;(-) Bolsas de estudo concedidas - educação básica (bolsistas integrais – Funcionários e seus dependentes);A;398
+3,0102E+12;(-) Bolsas de estudo concedidas - educação básica (bolsistas parciais 50% – Funcionários e seus dependentes);A;399
+3,0102E+12;(-) Bolsas de estudo concedidas - educação básica (bolsistas integrais – critério de seleção Lei 12.101/2009);A;400
+3,0102E+12;(-) Bolsas de estudo concedidas - educação básica (bolsistas parciais 50% – critério de seleção Lei 12.101/2009);A;401
+3,0102E+12;(-) Bolsas de estudo concedidas - educação básica (bolsistas parciais – beneficiários previstos pelo art. 31 do Decreto nº 7.237/2010);A;402
+3,0102E+12;(-) Bolsas de estudo concedidas - educação básica (bolsistas integrais – beneficiários não carentes);A;403
+3,0102E+12;(-) Bolsas de estudo concedidas - educação básica (bolsistas parciais 50% – beneficiários não carentes);A;404
+3,0102E+12;(-) Bolsas de estudo concedidas - educação básica (outros casos não previstos);A;405
+30102011102;(-) BOLSAS DE ESTUDO CONCEDIDAS - EDUCAÇÃO SUPERIOR – GRADUAÇÃO;S;406
+3,0102E+12;(-) Bolsas de estudo concedidas - educação superior graduação (bolsistas integrais PROUNI – Funcionários e seus dependentes);A;407
+3,0102E+12;(-) Bolsas de estudo concedidas - educação superior graduação (bolsistas parciais 50% PROUNI – Funcionários e seus dependentes);A;408
+3,0102E+12;(-) Bolsas de estudo concedidas - educação superior graduação (bolsistas parciais 25% PROUNI – Funcionários e seus dependentes);A;409
+3,0102E+12;(-) Bolsas de estudo concedidas - educação superior graduação (bolsistas integrais PROUNI – beneficiários critério de seleção Lei 11.096/2005);A;410
+3,0102E+12;(-) Bolsas de estudo concedidas - educação superior graduação (bolsistas parciais 50% PROUNI – beneficiários critério de seleção Lei 11.096/2005);A;411
+3,0102E+12;(-) Bolsas de estudo concedidas - educação superior graduação (bolsistas parciais 25% PROUNI – beneficiários critério de seleção Lei 11.096/2005);A;412
+3,0102E+12;(-) Bolsas de estudo concedidas - educação superior graduação (bolsistas integrais – Bolsas da própria instituição);A;413
+3,0102E+12;(-) Bolsas de estudo concedidas - educação superior graduação (bolsistas parciais 50% – Bolsas da própria instituição);A;414
+3,0102E+12;(-) Bolsas de estudo concedidas - educação superior graduação (bolsistas parciais 25% – Bolsas da própria instituição);A;415
+3,0102E+12;(-) Bolsas de estudo concedidas - educação superior graduação (outros casos não previstos);A;416
+30102011103;(-) BOLSAS DE ESTUDO CONCEDIDAS - EDUCAÇÃO SUPERIOR - PÓS-GRADUAÇÃO;S;417
+3,0102E+12;(-) Bolsas de estudo concedidas - educação superior pós-graduação (bolsistas integrais – Funcionários e seus dependentes);A;418
+3,0102E+12;(-) Bolsas de estudo concedidas - educação superior pós-graduação (bolsistas parciais – Funcionários e seus dependentes);A;419
+3,0102E+12;(-) Bolsas de estudo concedidas - educação superior pós-graduação (bolsistas integrais – Bolsas da própria instituição);A;420
+3,0102E+12;(-) Bolsas de estudo concedidas - educação superior pós-graduação (bolsistas parciais – Bolsas da própria instituição);A;421
+3,0102E+12;(-) Bolsas de estudo concedidas - educação superior pós-graduação (outros casos não previstos);A;422
+30103;CUSTO DOS BENS E SERVIÇOS VENDIDOS;S;423
+3010301;CUSTO DA VENDA DOS PRODUTOS/MERCADORIAS/SERVIÇOS;S;424
+301030101;Custo dos Produtos de Fabricação Própria Vendidos;A;425
+301030102;Custo das Mercadorias Revendidas;A;426
+301030103;Custo dos Serviços Prestados;A;427
+301030104;Custo das Unidades Imobiliárias Vendidas;A;428
+301030109;Outros Custos;A;429
+30104;AJUSTES A VALOR PRESENTE;S;430
+3010401;AJUSTES A VALOR PRESENTE;S;431
+301040101;Ajuste a Valor Presente de Estoques;A;432
+301040109;Outros Ajustes a Valor Presente;A;433
+30105;RECEITAS FINANCEIRAS;S;434
+3010501;RECEITAS FINANCEIRAS;S;435
+301050101;Receitas de Aplicações Financeiras;A;436
+301050102;Descontos Obtidos;A;437
+301050109;Outras Receitas Financeiras;A;438
+30109;OUTRAS RECEITAS;S;439
+3010901;OUTRAS RECEITAS;S;440
+301090101;Receita de Aluguéis;A;441
+301090102;Receita de Arrendamento;A;442
+301090103;Lucros e Dividendos Recebidos;A;443
+301090104;Participação em Debêntures e Congêneres;A;444
+301090105;Receita de Venda de Bens Patrimoniais;A;445
+301090106;(-) Custo dos Bens Patrimoniais Vendidos;A;446
+301090109;Outras Receitas não Associadas às Atividades;A;447
+4;DESPESAS;S;448
+401;DESPESAS COM PESSOAL;;449
+40101;DESPESAS COM RECURSOS HUMANOS;S;450
+4010101;HONORÁRIOS DA DIRETORIA;S;451
+401010101;Remuneração a Dirigentes e a Conselho de Administração;A;452
+401010102;Ajuda de Custos da Diretoria;A;453
+401010103;Encargos Sociais com a Diretoria;A;454
+401010104;(-) Reversão de Encargos Sociais com a Diretoria;A;455
+401010105;Despesa com Provisão para Remuneração e Encargos da Diretoria;A;456
+401010109;Outras Despesas com a Diretoria;A;457
+4010102;DESPESAS COM EMPREGADOS;S;458
+401010201;Ordenados, Salários, Gratificações e Outras Remunerações a Empregados;A;459
+401010202;Planos de Previdência com Empregados;A;460
+401010203;Encargos Sociais com Empregados;A;461
+401010204;(-) Reversão de Encargos Sociais com Empregados;A;462
+401010205;Despesa com Provisão para Remuneração e Encargos dos Empregados;A;463
+401010209;Outros Gastos com Empregados;A;464
+4010103;DESPESAS COM PESSOAS SEM VÍNCULO EMPREGATÍCIO;S;465
+401010301;Prestação de Serviços por Pessoas Físicas sem Vínculo Empregatício;A;466
+401010302;Encargos Sociais com Pessoas Físicas sem Vínculo Empregatício;A;467
+401010303;(-) Reversão de Encargos Sociais com Pessoas Físicas sem Vínculo Empregatício;A;468
+401010304;Despesa com Provisão para Gastos com Pessoas Físicas sem Vínculo Empregatício;A;469
+401010309;Outros Gastos com Pessoas Físicas sem Vínculo Empregatício;A;470
+40102;DESPESAS ADMINISTRATIVAS;S;471
+4010201;DESPESAS ADMINISTRATIVAS;S;472
+401020101;Despesas com Subvenções, Contribuições e Doações;A;473
+401020102;Prestação de Serviços por Pessoas Jurídicas;A;474
+401020103;Despesas de Alugueis;A;475
+401020104;Despesas com Veículos;A;476
+401020105;Despesas de Consumo (Água/Esgoto/Energia Elétrica/Comunicação);A;477
+401020106;Despesas de Consumo (Materiais de Expediente);A;478
+401020107;Despesas de Manutenção e Conservação de Bens e Instalações;A;479
+401020108;Despesas com Viagens, Diárias e Ajuda de Custo;A;480
+401020109;Propaganda, Publicidade e Patrocínio;A;481
+401020101;Multas;A;482
+401020102;Encargos de Depreciação/Amortização/Exaustão;A;483
+401020103;Despesa com Provisões Administrativas;A;484
+401020119;Outras Despesas Administrativas;A;485
+40203;DESPESAS FINANCEIRAS E TRIBUTÁRIAS;S;486
+4020301;DESPESAS FINANCEIRAS;S;487
+402030101;Despesas de Juros e Multas;A;488
+402030102;Descontos Concedidos;A;489
+402030103;Variações Monetárias;A;490
+402030109;Outras Despesas Financeiras;A;491
+4020302;DESPESAS TRIBUTÁRIAS;S;492
+402030201;Despesas com Tributos Federais;A;493
+402030202;(-) Reversão de Tributos Federais;A;494
+402030203;Despesas com Tributos Estaduais;A;495
+402030204;(-) Reversão de Tributos Estaduais;A;496
+402030205;Despesas com Tributos Municipais;A;497
+402030206;(-) Reversão de Tributos Municipais;A;498
+402030209;Outras Despesas Tributárias;A;499
+402030210;(-) Reversão de Outras Despesas Tributárias;A;500
+40209;OUTRAS DESPESAS;S;501
+4020901;OUTRAS DESPESAS;S;502
+402090101;DESPESAS POR PROGRMAS DE APOIO, PROJETOS OU AÇÕES ASSISTENCIAIS DE ENTIDADE DE EDUCAÇÃO;S;503
+40209010101;Ensino gratuito da educação básica em unidades específicas;A;504
+40209010102;Programas de apoio a alunos bolsistas – transporte;A;505
+40209010103;Programas de apoio a alunos bolsistas – uniforme;A;506
+40209010104;Programas de apoio a alunos bolsistas – material didático;A;507
+40209010105;Programas de apoio a alunos bolsistas – alimentação;A;508
+40209010106;Programas de apoio a alunos bolsistas – outros;A;509
+40209010109;Outras Despesas relacionadas a Programas de Apoio, Projetos ou Ações Assistenciais de Entidade de Educação;A;510
+402090102;DESPESAS POR PROGRAMAS, PROJETOS OU AÇÕES DE ASSISTÊNCIA SOCIAL;S;511
+40209010201;Atendimento;A;512
+40209010202;Assessoramento;A;513
+40209010203;Defesa e garantia de direitos;A;514
+40209010209;Outras Despesas relacionadas a Programas, Projetos ou Ações de Assistência Social;A;515
+402090109;Outras Despesas Gerais;A;516
