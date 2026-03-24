@@ -34,6 +34,12 @@ Regras locais obrigatórias:
 - `../../alpha` é o Alpha canônico nesta máquina
 - `../alpha`, se existir, é apenas espelho local não canônico
 
+**Fase OMEGA de Capitalização (Obrigatória):**
+Toda sessão, ao final, deve obrigatoriamente realizar o Replay de Inteligência:
+1.  **Extract Skills**: Se novas táticas foram criadas, o `vAudit` deve promovê-las ao `STATE`.
+2.  **Update Catalog**: O `catalog.yaml` deve ser atualizado com as novas prévias.
+3.  **Audit Drift**: Verificar se o conhecimento usado na sessão ainda é canônico.
+
 A GOVERNANÇA CANÔNICA (STATE) DITA AS REGRAS DO ECOSSISTEMA. Consulte o `../../state/` antes de agir sobre meta-conhecimentos.
 Sua identidade operacional está em: `.agent/agents/jarvis.md`
 Sua consciência coletiva está em: `connectome/status.json`
